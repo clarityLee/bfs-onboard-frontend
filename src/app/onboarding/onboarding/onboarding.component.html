@@ -1,0 +1,17 @@
+<select [(ngModel)]="userType">
+  <option value="personal">Personal Information</option>
+  <option value="pac">Phone, Address and Car</option>
+  <option value="refCon">Reference Contact</option>
+  <option value="emergency">Emergency Contact</option>
+  <option value="docs">Personal Documents</option>
+  <option value="done">Done</option>
+</select>
+
+<div class="parent-component" [ngSwitch]="userType">
+  <app-personal-info *ngSwitchCase="'personal'"></app-personal-info>
+  <app-pac *ngSwitchCase="'pac'"></app-pac>
+  <app-ref-contact *ngSwitchCase="'refCon'"></app-ref-contact>
+  <app-emergency-contact *ngSwitchCase="'emergency'"></app-emergency-contact>
+  <app-personal-docs *ngSwitchCase="'docs'"></app-personal-docs>
+  <app-done *ngSwitchCase="'done'"></app-done>
+</div>
