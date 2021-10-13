@@ -11,10 +11,10 @@ import { HousingComponent } from './components/housing/housing.component';
 const routes: Routes = [
   {path:'' ,component: LoginComponent},
   {path:'employee', component: EmployeeComponent},
-  {path:'home',component: HomeComponent},
-  {path:'personalInfo', component: PersonalInfoComponent},
-  {path:'visaStatus',component: VisaStatusComponent},
-  {path:'housing', component: HousingComponent},
+  {path:'employee/home',component: HomeComponent},
+  {path:'employee/personalInfo', component: PersonalInfoComponent},
+  {path:'employee/visaStatus',component: VisaStatusComponent},
+  {path:'employee/housing', component: HousingComponent},
   {path:'**', redirectTo:'home'}
 ];
 

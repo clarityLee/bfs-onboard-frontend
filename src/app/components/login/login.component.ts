@@ -26,10 +26,11 @@ export class LoginComponent implements OnInit {
     if(this.username === this.user.username && this.password === this.user.password){
       localStorage.setItem('username',this.username);
       console.log("pass matched");
-      let navigationExtras: NavigationExtras = {
-        queryParams: {'username' : this.username}
-      };
-      this.router.navigate(['/home'],navigationExtras);
+      // let navigationExtras: NavigationExtras = {
+      //   queryParams: {'username' : this.username}
+      // };
+      // this.router.navigate(['/home'],navigationExtras);
+      this.router.navigate(['/employee/home']);
     }else{
       this.username = '';
       this.email = '';

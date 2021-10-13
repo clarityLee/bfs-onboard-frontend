@@ -1,1 +1,71 @@
-<p>address-section works!</p>
+<h3>Address Section</h3>
+<form>
+    <div class="primary-address">
+        <h4>Primary Address</h4>
+        <div class="form-group col-md-6">
+            <label for="inputPrimaryAddressLine1">Address Line1</label>
+            <input [(ngModel)]='primaryAddressLine1' name='primaryAddressLine1' readonly={{isReadOnly}} value={{primaryAddressLine1}} type="primaryAddressLine1" class="form-control" id="inputPrimaryAddressLine1">
+        </div>
+    
+        <div class="form-group col-md-6">
+            <label for="inputPrimaryAddressLine2">Address Line2</label>
+            <input [(ngModel)]='primaryAddressLine2' name='primaryAddressLine2' readonly={{isReadOnly}} value={{primaryAddressLine2}} type="primaryAddressLine2" class="form-control" id="inputPrimaryAddressLine2">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input [(ngModel)]='primaryCity' name='primaryCity' readonly={{isReadOnly}} value={{primaryCity}} type="primaryCity" class="form-control" id="inputPrimaryCity">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">State</label>
+                <input [(ngModel)]='primaryState' name='primaryState' readonly={{isReadOnly}} value={{primaryState}} type="primaryState" class="form-control" id="inputPrimaryState">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputZip">Zip</label>
+                <input [(ngModel)]='primaryZip' name='primaryZip' readonly={{isReadOnly}} value={{primaryZip}} type="primaryZip" class="form-control" id="inputPrimaryZip">
+            </div>
+        </div>
+    </div>
+
+    <div class="secondary-address">
+        <h4>Secondary Address</h4>
+        <div class="form-group col-md-6">
+            <label for="inputSecondaryAddressLine1">Address Line1</label>
+            <input [(ngModel)]='secondaryAddressLine1' name='secondaryAddressLine1' readonly={{isReadOnly}} value={{secondaryAddressLine1}} type="secondaryAddressLine1" class="form-control" id="inputSecondaryAddressLine1">
+        </div>
+    
+        <div class="form-group col-md-6">
+            <label for="inputSecondaryAddressLine2">Address Line2</label>
+            <input [(ngModel)]='secondaryAddressLine2' name='secondaryAddressLine2' readonly={{isReadOnly}} value={{secondaryAddressLine2}} type="secondaryAddressLine2" class="form-control" id="inputSecondaryAddressLine2">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input [(ngModel)]='secondaryCity' name='secondaryCity' readonly={{isReadOnly}} value={{secondaryCity}} type="secondaryCity" class="form-control" id="inputSecondaryCity">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">State</label>
+                <input [(ngModel)]='secondaryState' name='secondaryState' readonly={{isReadOnly}} value={{secondaryState}} type="secondaryState" class="form-control" id="inputSecondaryState">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputZip">Zip</label>
+                <input [(ngModel)]='secondaryZip' name='secondaryZip' readonly={{isReadOnly}} value={{secondaryZip}} type="secondaryZip" class="form-control" id="inputSecondaryZip">
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="isReadOnly === 'readonly'">
+        <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
+    </div>
+    
+    <div *ngIf="isReadOnly !== 'readonly'">
+        <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </div>
+</form>
+
+<br>
+<hr>
+

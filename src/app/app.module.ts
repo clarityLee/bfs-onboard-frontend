@@ -17,6 +17,9 @@ import { ContactSectionComponent } from './components/personal-info/contact-sect
 import { EmploymentSectionComponent } from './components/personal-info/employment-section/employment-section.component';
 import { EmergencyContactSectionComponent } from './components/personal-info/emergency-contact-section/emergency-contact-section.component';
 import { DocumentSectionComponent } from './components/personal-info/document-section/document-section.component';
+import { TestComponent } from './components/test/test.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,14 @@ import { DocumentSectionComponent } from './components/personal-info/document-se
     ContactSectionComponent,
     EmploymentSectionComponent,
     EmergencyContactSectionComponent,
-    DocumentSectionComponent
+    DocumentSectionComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

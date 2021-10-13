@@ -19,12 +19,10 @@ export class HomeComponent implements OnInit {
       console.log('from localstorage '+this.username);
     }
       
-
-
-    this.route.queryParams.subscribe((data)=>{
-      console.log(data.username);
-      this.username = data.username;
-    })
+    // this.route.queryParams.subscribe((data)=>{
+    //   console.log(data.username);
+    //   this.username = data.username;
+    // })
   }
 
 }
