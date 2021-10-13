@@ -1,1 +1,16 @@
-<p>personal-info works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="fname" />
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lname" />
+
+  <label for="middle-name">Middle Name: </label>
+  <input id="middle-name" type="text" formControlName="mname" />
+
+  <label for="ssn">ssn: </label>
+  <input id="ssn" type="text" formControlName="ssn" />
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!myForm.valid">Submit</button>
+</form>

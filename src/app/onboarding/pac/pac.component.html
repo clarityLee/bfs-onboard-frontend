@@ -1,1 +1,16 @@
-<p>pac works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="cell-phone">Cell Phone: </label>
+  <input id="cell-phone" type="text" formControlName="cphone" />
+
+  <label for="work-phone">Work Phone: </label>
+  <input id="work-phone" type="text" formControlName="wphone" />
+
+  <label for="address">Current Address: </label>
+  <input id="address" type="text" formControlName="address" />
+
+  <label for="city">City: </label>
+  <input id="city" type="text" formControlName="city" />
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!myForm.valid">Submit</button>
+</form>

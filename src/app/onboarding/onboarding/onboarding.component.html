@@ -7,11 +7,31 @@
   <option value="done">Done</option>
 </select>
 
-<div class="parent-component" [ngSwitch]="userType">
-  <app-personal-info *ngSwitchCase="'personal'"></app-personal-info>
-  <app-pac *ngSwitchCase="'pac'"></app-pac>
-  <app-ref-contact *ngSwitchCase="'refCon'"></app-ref-contact>
-  <app-emergency-contact *ngSwitchCase="'emergency'"></app-emergency-contact>
-  <app-personal-docs *ngSwitchCase="'docs'"></app-personal-docs>
-  <app-done *ngSwitchCase="'done'"></app-done>
-</div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="parent-component" [ngSwitch]="userType">
+    <app-personal-info
+      [myForm]="myForm"
+      *ngSwitchCase="'personal'"
+    ></app-personal-info>
+    <app-pac [myForm]="myForm" *ngSwitchCase="'pac'"></app-pac>
+    <app-ref-contact
+      [myForm]="myForm"
+      *ngSwitchCase="'refCon'"
+    ></app-ref-contact>
+    <app-emergency-contact
+      [myForm]="myForm"
+      *ngSwitchCase="'emergency'"
+    ></app-emergency-contact>
+    <app-personal-docs
+      [myForm]="myForm"
+      *ngSwitchCase="'docs'"
+    ></app-personal-docs>
+    <app-done [myForm]="myForm" *ngSwitchCase="'done'"></app-done>
+    <button type="submit">Submit</button>
+  </div>
+  <p>
+    WIP. submitting will return a formgroup of entities on the console if you
+    got to inspect. I will finish implementing html field logic in each view and
+    packaging services next.
+  </p>
+</form>
