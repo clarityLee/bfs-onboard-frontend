@@ -1,0 +1,29 @@
+<app-hr-navigation></app-hr-navigation>
+
+<input [(ngModel)]='searchFirstname' name='searchFirstname' type="searchFirstname" id="searchFirstname" placeholder="firstname">
+<button type="submit" class="btn btn-primary" (click)="onSearchFirstname()">Search</button>
+
+<!-- <input [(ngModel)]='searchLastname' name='searchLastname' type="searchLastname" id="searchLastname">
+<button type="submit" class="btn btn-primary" (click)="onSearchLastname()">Search</button>
+
+<input [(ngModel)]='searchId' name='searchId' type="searchId" id="searchId">
+<button type="submit" class="btn btn-primary" (click)="onSearch()">Search</button> -->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">SSN</th>
+        <th scope="col">Starting Date</th>
+        <th scope="col">Visa Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let profile of matchedProfiles; let i=index">
+            <td>{{profile.firstname}}</td>
+            <td>{{profile.SSN}}</td>
+            <td>{{profile.StartingDate}}</td>
+            <td>{{profile.VisaStatus}}</td>
+        </tr>
+    </tbody>
+  </table>

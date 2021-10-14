@@ -1,0 +1,44 @@
+<h3>Employment Section</h3>
+<form>
+    <div class="form-group col-md-6">
+        <label for="inputWorkAuthorization">Work Authorization</label>
+        <input [(ngModel)]='workAuthorization' name='workAuthorization' readonly={{isReadOnly}} value={{workAuthorization}} type="workAuthorization" class="form-control" id="inputWorkAuthorization">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="inputWorkAuthStartDate">Work Authorization Start Date</label>
+        <input [(ngModel)]='workAuthStartDate' name='workAuthStartDate' readonly={{isReadOnly}} value={{workAuthStartDate}} type="workAuthStartDate" class="form-control" id="inputWorkAuthStartDate">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="inputWorkAuthEndDate">Work Authorization End Date</label>
+        <input [(ngModel)]='workAuthEndDate' name='workAuthEndDate' readonly={{isReadOnly}} value={{workAuthEndDate}} type="workAuthEndDate" class="form-control" id="inputWorkAuthEndDate">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="inputEmploymentStartDate">Employment Start Date</label>
+        <input [(ngModel)]='employmentStartDate' name='employmentStartDate' readonly={{isReadOnly}} value={{employmentStartDate}} type="employmentStartDate" class="form-control" id="inputEmploymentStartDate">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="inputEmploymentEndDate">Employment End Date</label>
+        <input [(ngModel)]='employmentEndDate' name='employmentEndDate' readonly={{isReadOnly}} value={{employmentEndDate}} type="employmentEndDate" class="form-control" id="inputEmploymentEndDate">
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="inputTitle">Title</label>
+        <input [(ngModel)]='title' name='title' readonly={{isReadOnly}} value={{title}} type="title" class="form-control" id="inputTitle">
+    </div>
+    
+    <div *ngIf="isReadOnly === 'readonly'">
+        <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
+    </div>
+    
+    <div *ngIf="isReadOnly !== 'readonly'">
+        <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </div>
+</form>
+
+<br>
+<hr>
