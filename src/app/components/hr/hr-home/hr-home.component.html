@@ -1,0 +1,34 @@
+<app-hr-navigation></app-hr-navigation>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Work Authorization</th>
+        <th scope="col">Expiration Date</th>
+        <th scope="col">Day Left</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td (click)="onClickName()">John</td>
+        <td>OPT</td>
+        <td>9/1/2022</td>
+        <td>98</td>
+        <td>
+            <button type="submit" class="btn btn-primary" (click)="onNotify()" >Notify</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td (click)="onClickName()">Mary</td>
+        <td>H4</td>
+        <td>9/1/2022</td>
+        <td>98</td>
+        <td>
+            <button type="submit" class="btn btn-primary" (click)="onPreview()" >Preview</button>
+            <button type="submit" class="btn btn-primary" (click)="onDownload()" >Download</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

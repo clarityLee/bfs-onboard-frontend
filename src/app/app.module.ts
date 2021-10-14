@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -19,6 +20,12 @@ import { EmergencyContactSectionComponent } from './components/personal-info/eme
 import { DocumentSectionComponent } from './components/personal-info/document-section/document-section.component';
 import { TestComponent } from './components/test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HrHomeComponent } from './components/hr/hr-home/hr-home.component';
+import { EmployeeProfileComponent } from './components/hr/employee-profile/employee-profile.component';
+import { VisaStatusManagementComponent } from './components/hr/visa-status-management/visa-status-management.component';
+import { HireComponent } from './components/hr/hire/hire.component';
+import { HouseManagementComponent } from './components/hr/house-management/house-management.component';
+import { HrNavigationComponent } from './components/hr/hr-navigation/hr-navigation.component';
 //import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
@@ -37,13 +44,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmploymentSectionComponent,
     EmergencyContactSectionComponent,
     DocumentSectionComponent,
-    TestComponent
+    TestComponent,
+    HrHomeComponent,
+    EmployeeProfileComponent,
+    VisaStatusManagementComponent,
+    HireComponent,
+    HouseManagementComponent,
+    HrNavigationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
