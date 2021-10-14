@@ -1,3 +1,4 @@
+import { FormattedError } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
@@ -7,13 +8,17 @@ import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
   styleUrls: ['./emergency-contact.component.css'],
 })
 export class EmergencyContactComponent implements OnInit {
-  @Input() myForm: FormGroup = new FormGroup({
+  @Input() myForm = this.formBuilder.group({
     contacts: this.formBuilder.array([this.createContact()]),
   });
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myForm = this.formBuilder.group({
+      contacts: this.formBuilder.array([this.createContact()]),
+    });
+  }
   createContact(): FormGroup {
     return new FormGroup({
       cFname: new FormControl(''),
@@ -31,8 +36,22 @@ export class EmergencyContactComponent implements OnInit {
   }
 
   addContact() {
-    const contacts = this.myForm.get('contacts') as FormArray;
-    contacts.push(this.createContact());
+    const contacts = this.myForm.controls.contacts as FormArray;
+    contacts.push(
+      this.formBuilder.group({
+        cFname: new FormControl(''),
+        cLname: new FormControl(''),
+        cMname: new FormControl(''),
+        cPhone: new FormControl(''),
+        cAddress: new FormControl(''),
+        cAddress2: new FormControl(''),
+        cCity: new FormControl(''),
+        cState: new FormControl(''),
+        cZip: new FormControl(''),
+        cEmail: new FormControl(''),
+        cRelationship: new FormControl(''),
+      })
+    );
   }
   get formData() {
     return <FormArray>this.myForm.get('contacts');

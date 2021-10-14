@@ -1,1 +1,4 @@
-<p>personal-docs works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="OPT">Upload your OPT receipt: </label>
+  <input id="OPT" type="file" formControlName="OPT" />
+</form>
