@@ -4,38 +4,20 @@
     src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
     class="profile-img-card"
   />
-  <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        class="form-control"
-        name="username"
-        [(ngModel)]="form.username"
-        #username="ngModel"
-      />
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        [(ngModel)]="form.email"
-        #email="ngModel"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        name="password"
-        [(ngModel)]="form.password"
-      />
-    </div>
-    <div class="form-group">
-      <button class="btn btn-primary btn-block">Sign Up</button>
-    </div>
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <label for="email">email: </label>
+    <p>{{ email }}</p>
+
+    <label for="token">token: </label>
+    <p>{{ token }}</p>
+
+    <label for="userName">Username: </label>
+    <input id="userName" type="text" formControlName="username" />
+
+    <label for="password">Password: </label>
+    <input id="password" type="text" formControlName="password" />
+
+    <button type="submit" [disabled]="!myForm.valid">Register</button>
   </form>
 </div>

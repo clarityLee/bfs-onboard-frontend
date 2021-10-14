@@ -1,38 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-//import { AuthService } from '../_services/auth.service';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  form: any = {
-    username: null,
-    email: null,
-    password: null,
-  };
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
-  //private authService: AuthService
-  constructor() {}
+  @Input() myForm: FormGroup = new FormGroup({});
+  token: any = '';
+  email: any = '';
 
-  ngOnInit(): void {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.myForm.addControl('username', new FormControl());
+    this.myForm.addControl('token', new FormControl());
+    this.myForm.addControl('email', new FormControl());
+    this.myForm.addControl('password', new FormControl());
+
+    this.route.params.subscribe((params) => {
+      console.log(this.route.url);
+    });
+    this.token = this.route.snapshot.queryParamMap.get('token');
+    this.email = this.route.snapshot.queryParamMap.get('email');
+  }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
+    var formData = new FormData();
+    formData.append('username', this.myForm.get('username')?.value);
+    formData.append('email', 'clarity.lee@gmail.com');
+    formData.append('token', 'ozvghzyy-lotw-uuv2-hcma-ljcl0tvgubrh');
+    formData.append('password', this.myForm.get('password')?.value);
 
-    // this.authService.register(username, email, password).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //     this.isSuccessful = true;
-    //     this.isSignUpFailed = false;
-    //   },
-    //   (err) => {
-    //     this.errorMessage = err.error.message;
-    //     this.isSignUpFailed = true;
-    //   }
-    //);
+    this.http.post('http://localhost:8080/login/register', formData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+
+    console.log(formData.get('token'));
+
+    this.router.navigate(['on-boarding']);
   }
 }

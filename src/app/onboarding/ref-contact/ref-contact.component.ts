@@ -7,9 +7,7 @@ import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
   styleUrls: ['./ref-contact.component.css'],
 })
 export class RefContactComponent implements OnInit {
-  @Input() myForm: FormGroup = new FormGroup({
-    contacts: this.formBuilder.array([this.createContact()]),
-  });
+  @Input() myForm: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -26,26 +24,7 @@ export class RefContactComponent implements OnInit {
     this.myForm.addControl('refEmail', new FormControl());
     this.myForm.addControl('refRelationship', new FormControl());
   }
-  createContact(): FormGroup {
-    return new FormGroup({
-      cFname: new FormControl(''),
-      cLname: new FormControl(''),
-      cMname: new FormControl(''),
-      cPhone: new FormControl(''),
-      cAddress: new FormControl(''),
-      cAddress2: new FormControl(''),
-      cCity: new FormControl(''),
-      cState: new FormControl(''),
-      cZip: new FormControl(''),
-      cEmail: new FormControl(''),
-      cRelationship: new FormControl(''),
-    });
-  }
 
-  addContact() {
-    const contacts = this.myForm.get('contacts') as FormArray;
-    contacts.push(this.createContact());
-  }
   onSubmit(): void {
     console.log(this.myForm.value);
   }
