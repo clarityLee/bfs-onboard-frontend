@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { On_boardingModule } from './onboarding/onboarding.module';
+import { RegisterComponent } from './register/register.component';
+import { OnboardingComponent } from './onboarding/onboarding/onboarding.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { HomeComponent } from './components/home/home.component';
@@ -14,6 +19,11 @@ import { HouseManagementComponent } from './components/hr/house-management/house
 
 const routes: Routes = [
   {path:'' ,component: LoginComponent},
+  {
+    path: 'login/register',
+    component: RegisterComponent,
+  },
+  { path: 'on-boarding', component: OnboardingComponent },
   // {path:'onboarding', component: EmployeeComponent},
   {path:'employee/home',component: HomeComponent},
   {path:'employee/personalInfo', component: PersonalInfoComponent},
@@ -27,7 +37,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), On_boardingModule],
+  exports: [RouterModule, On_boardingModule],
 })
 export class AppRoutingModule { }

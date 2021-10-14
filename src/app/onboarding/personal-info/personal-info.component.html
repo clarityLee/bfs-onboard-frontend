@@ -1,0 +1,98 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="fname" />
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lname" />
+
+  <label for="middle-name">Middle Name: </label>
+  <input id="middle-name" type="text" formControlName="mname" />
+
+  <label for="ssn">ssn: </label>
+  <input id="ssn" type="text" formControlName="ssn" />
+
+  <div class="form-group">
+    <label for="gender">gender: </label>
+    <select class="form-control" formControlName="gender" id="gender">
+      <option>male</option>
+      <option>female</option>
+      <option>I don't want to answer</option>
+    </select>
+  </div>
+
+  <label>
+    Date of Birth:
+    <input type="date" formControlName="dob" />
+  </label>
+
+  <div class="form-group">
+    <label for="citizenship">US citizen?: </label>
+    <select class="form-control" formControlName="citizenship" id="citizenship">
+      <option>yes</option>
+      <option>no</option>
+    </select>
+  </div>
+  <div>
+    <div class="form-group" *ngIf="myForm.value.citizenship === 'yes'">
+      <label for="citizenType">Citizen Type: </label>
+      <select
+        class="form-control"
+        formControlName="citizenType"
+        id="citizenType"
+      >
+        <option>Citizen</option>
+        <option>Green Card</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <div class="form-group" *ngIf="myForm.value.citizenship === 'no'">
+      <label for="authType">Citizen Type: </label>
+      <select class="form-control" formControlName="authType" id="authType">
+        <option>H1-B</option>
+        <option>L2</option>
+        <option>F1(CPT/OPT)</option>
+        <option>H4</option>
+        <option>other</option>
+      </select>
+      <label>
+        Work start date:
+        <input type="date" formControlName="startDate" />
+      </label>
+      <label>
+        Authorization expiration date:
+        <input type="date" formControlName="authExp" />
+      </label>
+      <label>Upload your work authorization</label>
+      <input type="file" formControlName="authFile" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="license">Driver's license?: </label>
+    <select class="form-control" formControlName="license" id="license">
+      <option>yes</option>
+      <option>no</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="myForm.value.authType === 'other'">
+    <label for="workAuth">Specify Work Authorization: </label>
+    <input id="workAuth" type="text" formControlName="workAuth" />
+  </div>
+  <div>
+    <div class="form-group" *ngIf="myForm.value.license === 'yes'">
+      <label for="licenseNum">License Number: </label>
+      <input id="licenseNum" type="text" formControlName="licenseNum" />
+      <label>
+        License expiration date:
+        <input type="date" formControlName="licenseExp" />
+      </label>
+      <label>Upload your driver license</label>
+      <input type="file" formControlName="licenseFile" />
+    </div>
+  </div>
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!myForm.valid">Submit</button>
+</form>
