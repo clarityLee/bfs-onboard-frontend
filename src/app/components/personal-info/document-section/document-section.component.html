@@ -1,0 +1,13 @@
+<h3>Document Section</h3>
+<form>
+    <div *ngFor="let doc of documents; let i=index">
+        <h5>The {{i}}th document</h5>
+
+        <!-- <object [data]='transform()' ></object> -->
+        <img [src]='transform(doc.path)' />
+        <button type="submit" class="btn btn-primary" (click)="download(i)">Download</button>
+    </div>
+</form>
+
+<br>
+<hr>
