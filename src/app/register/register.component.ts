@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
   @Input() myForm: FormGroup = new FormGroup({});
-  token: any = '';
-  email: any = '';
+  token: any = 'ozvghzyy-lotw-uuv2-hcma-ljcl0tvgubrh';
+  email: any = 'clarity.lee@gmail.com';
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +28,9 @@ export class RegisterComponent implements OnInit {
     this.route.params.subscribe((params) => {
       console.log(this.route.url);
     });
-    this.token = this.route.snapshot.queryParamMap.get('token');
-    this.email = this.route.snapshot.queryParamMap.get('email');
+
+    // this.token = this.route.snapshot.queryParamMap.get('token');
+    // this.email = this.route.snapshot.queryParamMap.get('email');
   }
 
   onSubmit(): void {
