@@ -8,8 +8,28 @@
   <label for="address">Current Address: </label>
   <input id="address" type="text" formControlName="address" />
 
+  <label for="address2">Address 2: </label>
+  <input id="address2" type="text" formControlName="address2" />
+
   <label for="city">City: </label>
   <input id="city" type="text" formControlName="city" />
+
+  <label for="state">State: </label>
+  <input id="state" type="text" formControlName="state" />
+
+  <label for="zip">Postal Code: </label>
+  <input id="zip" type="text" formControlName="zip" />
+
+  <p>Car Information</p>
+
+  <label for="make">car make: </label>
+  <input id="make" type="text" formControlName="carMake" />
+
+  <label for="model">car model: </label>
+  <input id="model" type="text" formControlName="carModel" />
+
+  <label for="color">car color: </label>
+  <input id="color" type="text" formControlName="carColor" />
 
   <p>Complete the form to enable button.</p>
   <button type="submit" [disabled]="!myForm.valid">Submit</button>

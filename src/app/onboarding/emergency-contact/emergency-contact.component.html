@@ -1,1 +1,45 @@
-<p>emergency-contact works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="contacts">
+    <div
+      class="row"
+      *ngFor="let contacts of formData.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <label for="cFname">First Name: </label>
+      <input id="cFname" type="text" formControlName="cFname" />
+
+      <label for="cLname">Last Name: </label>
+      <input id="cLname" type="text" formControlName="cLname" />
+
+      <label for="cMname">Middle Name: </label>
+      <input id="cMname" type="text" formControlName="cMname" />
+
+      <label for="cPhone">Phone Number: </label>
+      <input id="cPhone" type="text" formControlName="cPhone" />
+
+      <label for="cAddress">Address: </label>
+      <input id="cAddress" type="text" formControlName="cAddress" />
+
+      <label for="cAddress2">Address 2: </label>
+      <input id="cAddress2" type="text" formControlName="cAddress2" />
+
+      <label for="cCity">City: </label>
+      <input id="cCity" type="text" formControlName="cCity" />
+
+      <label for="cState">State: </label>
+      <input id="cState" type="text" formControlName="cState" />
+
+      <label for="cZip">Postal Code: </label>
+      <input id="cZip" type="text" formControlName="cZip" />
+
+      <label for="cEmail">Email: </label>
+      <input id="cEmail" type="email" formControlName="cEmail" />
+
+      <label for="cRelationship">Relationship: </label>
+      <input id="cRelationship" type="text" formControlName="cRelationship" />
+      <button onclick="addContact">Add Contact</button>
+    </div>
+  </div>
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!myForm.valid">Submit</button>
+</form>

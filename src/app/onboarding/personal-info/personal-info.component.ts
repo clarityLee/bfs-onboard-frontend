@@ -9,7 +9,6 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 export class PersonalInfoComponent implements OnInit {
   @Input() myForm: FormGroup = new FormGroup({});
   constructor(private formBuilder: FormBuilder) {}
-  cit: any = null;
 
   ngOnInit(): void {
     this.myForm.addControl('fname', new FormControl());
@@ -20,6 +19,15 @@ export class PersonalInfoComponent implements OnInit {
     this.myForm.addControl('dob', new FormControl());
     this.myForm.addControl('citizenship', new FormControl());
     this.myForm.addControl('citizenType', new FormControl());
+    this.myForm.addControl('license', new FormControl());
+    this.myForm.addControl('licenseNum', new FormControl());
+    this.myForm.addControl('licenseExp', new FormControl());
+    this.myForm.addControl('licenseFile', new FormControl());
+    this.myForm.addControl('authType', new FormControl());
+    this.myForm.addControl('authExp', new FormControl());
+    this.myForm.addControl('startDate', new FormControl());
+    this.myForm.addControl('workAuth', new FormControl());
+    this.myForm.addControl('authFile', new FormControl());
   }
 
   onSubmit(): void {

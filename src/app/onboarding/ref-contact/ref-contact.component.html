@@ -1,1 +1,37 @@
-<p>ref-contact works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="refFname">First Name: </label>
+  <input id="refFname" type="text" formControlName="refFname" />
+
+  <label for="refLname">Last Name: </label>
+  <input id="refLname" type="text" formControlName="refLname" />
+
+  <label for="refMname">Middle Name: </label>
+  <input id="refMname" type="text" formControlName="refMname" />
+
+  <label for="refPhone">Phone Number: </label>
+  <input id="refPhone" type="text" formControlName="refPhone" />
+
+  <label for="refAddress">Address: </label>
+  <input id="refAddress" type="text" formControlName="refAddress" />
+
+  <label for="refAddress2">Address 2: </label>
+  <input id="refAddress2" type="text" formControlName="refAddress2" />
+
+  <label for="refCity">City: </label>
+  <input id="refCity" type="text" formControlName="refCity" />
+
+  <label for="refState">State: </label>
+  <input id="refState" type="text" formControlName="refState" />
+
+  <label for="refZip">Postal Code: </label>
+  <input id="refZip" type="text" formControlName="refZip" />
+
+  <label for="refEmail">Email: </label>
+  <input id="refEmail" type="email" formControlName="refEmail" />
+
+  <label for="refRelationship">Relationship: </label>
+  <input id="refRelationship" type="text" formControlName="refRelationship" />
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!myForm.valid">Submit</button>
+</form>
