@@ -74,8 +74,42 @@ export class OnboardingComponent implements OnInit {
       .post<any>(
         'http://localhost:8080/on-boarding',
         {
-          firstName: 'Joe',
-          lastName: 'Smith',
+          userName: this.string,
+          email: this.string,
+          firstName: this.myForm.get('fname')?.value,
+          lastName: this.myForm.get('lname')?.value,
+          middleName: this.myForm.get('mname')?.value,
+          preferredName: '-',
+          avatar: '-',
+          currentAddress: this.myForm.get('address')?.value,
+          ceilPhone: this.myForm.get('cphone')?.value,
+          workPhone: this.myForm.get('wphone')?.value,
+          car:
+            this.myForm.get('carMake')?.value +
+            this.myForm.get('carColor')?.value +
+            this.myForm.get('carModel')?.value,
+          SSN: this.myForm.get('ssn')?.value,
+          dateOfBirth: this.myForm.get('dob')?.value,
+          resident: this.res,
+          citizen: this.citizen,
+          greenCard: this.greencard,
+          workAuthorization: this.myForm.get('workAuth')?.value,
+          workAuthUploadPath: this.myForm.get('authFile')?.value,
+          hasDriverLicense: this.license,
+          driveLicenseNumber: this.myForm.get('licenseNum')?.value,
+          driveLicenseExpireDate: this.myForm.get('licenseExp')?.value,
+          driveLicensePath: this.myForm.get('licenseFile')?.value,
+          Gender: this.myForm.get('gender')?.value,
+          addressLine1: this.myForm.get('address')?.value,
+          addressLine2: this.myForm.get('address2')?.value,
+          city: this.myForm.get('city')?.value,
+          zipcode: this.myForm.get('zip')?.value,
+          stateName: this.myForm.get('state')?.value,
+          stateAbbr: this.myForm.get('state')?.value,
+
+          Phone: this.myForm.get('refPhone')?.value,
+          address: this.myForm.get('refAddress')?.value,
+          relationship: this.myForm.get('refRelationship')?.value,
         },
         httpOptions
       )
