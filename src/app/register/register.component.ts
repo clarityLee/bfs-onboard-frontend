@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.myForm.controls['email'].disable();
     this.myForm.controls['token'].disable();
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.myForm.controls['email'].setValue(params.email);
       this.myForm.controls['token'].setValue(params.token);
     });
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error)
     );
-
+    //testing
     console.log(formData.get('token'));
 
     this.router.navigate(['on-boarding']);
