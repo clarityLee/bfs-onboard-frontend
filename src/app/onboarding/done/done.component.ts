@@ -11,4 +11,8 @@ export class DoneComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  reset() {
+    this.myForm.reset();
+  }
 }
