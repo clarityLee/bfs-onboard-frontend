@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
 
 @Component({
@@ -14,6 +14,7 @@ export class OnboardingComponent implements OnInit {
   greencard = 'false';
   license = 'false';
   string: string = 'aaa';
+
   @Input() myForm: FormGroup = new FormGroup({});
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
   userType: any = null;
@@ -63,14 +64,21 @@ export class OnboardingComponent implements OnInit {
       this.myForm.get('licenseExp')?.value
     );
     formData.append('driveLicensePath', this.myForm.get('licenseFile')?.value);
-    var object = {};
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
 
     console.log(this.myForm.value);
+
     this.http
-      .post<any>('http://localhost:8080/on-boarding', {
-        "firstName": "Joe",
-        "lastName": "Smith",
-      })
+      .post<any>(
+        'http://localhost:8080/on-boarding',
+        {
+          firstName: 'Joe',
+          lastName: 'Smith',
+        },
+        httpOptions
+      )
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
