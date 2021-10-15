@@ -20,7 +20,7 @@ export class OnboardingComponent implements OnInit {
   userType: any = null;
   ngOnInit(): void {}
   onSubmit(): void {
-    var formData = new FormData();
+    //var formData = new FormData();
     if (this.myForm.get('citizenship')?.value === 'yes') {
       this.res = 'true';
     }
@@ -33,41 +33,41 @@ export class OnboardingComponent implements OnInit {
     if (this.myForm.get('license')?.value === 'yes') {
       this.license = 'true';
     }
-    formData.append('userName', this.string);
-    formData.append('email', this.string);
-    formData.append('firstName', this.myForm.get('fname')?.value);
-    formData.append('lastName', this.myForm.get('lname')?.value);
-    formData.append('middleName', this.myForm.get('mname')?.value);
-    formData.append('preferredName', '-');
-    formData.append('avatar', '-');
-    formData.append('currentAddress', this.myForm.get('address')?.value);
-    formData.append('ceilPhone', this.myForm.get('cphone')?.value);
-    formData.append('workPhone', this.myForm.get('wphone')?.value);
-    formData.append(
-      'car',
-      this.myForm.get('carMake')?.value +
-        this.myForm.get('carColor')?.value +
-        this.myForm.get('carModel')?.value
-    );
-    formData.append('SSN', this.myForm.get('ssn')?.value);
-    formData.append('dateOfBirth', this.myForm.get('dob')?.value);
-    formData.append('Gender', this.myForm.get('gender')?.value);
-    formData.append('resident', this.res);
-    formData.append('citizen', this.citizen);
-    formData.append('greenCard', this.greencard);
-    formData.append('workAuthorization', this.myForm.get('workAuth')?.value);
-    formData.append('workAuthUploadPath', this.myForm.get('authFile')?.value);
-    formData.append('hasDriverLicense', this.license);
-    formData.append('driveLicenseNumber', this.myForm.get('licenseNum')?.value);
-    formData.append(
-      'driveLicenseExpireDate',
-      this.myForm.get('licenseExp')?.value
-    );
-    formData.append('driveLicensePath', this.myForm.get('licenseFile')?.value);
+    // formData.append('userName', this.string);
+    // formData.append('email', this.string);
+    // formData.append('firstName', this.myForm.get('fname')?.value);
+    // formData.append('lastName', this.myForm.get('lname')?.value);
+    // formData.append('middleName', this.myForm.get('mname')?.value);
+    // formData.append('preferredName', '-');
+    // formData.append('avatar', '-');
+    // formData.append('currentAddress', this.myForm.get('address')?.value);
+    // formData.append('ceilPhone', this.myForm.get('cphone')?.value);
+    // formData.append('workPhone', this.myForm.get('wphone')?.value);
+    // formData.append(
+    //   'car',
+    //   this.myForm.get('carMake')?.value +
+    //     this.myForm.get('carColor')?.value +
+    //     this.myForm.get('carModel')?.value
+    // );
+    // formData.append('SSN', this.myForm.get('ssn')?.value);
+    // formData.append('dateOfBirth', this.myForm.get('dob')?.value);
+    // formData.append('Gender', this.myForm.get('gender')?.value);
+    // formData.append('resident', this.res);
+    // formData.append('citizen', this.citizen);
+    // formData.append('greenCard', this.greencard);
+    // formData.append('workAuthorization', this.myForm.get('workAuth')?.value);
+    // formData.append('workAuthUploadPath', this.myForm.get('authFile')?.value);
+    // formData.append('hasDriverLicense', this.license);
+    // formData.append('driveLicenseNumber', this.myForm.get('licenseNum')?.value);
+    // formData.append(
+    //   'driveLicenseExpireDate',
+    //   this.myForm.get('licenseExp')?.value
+    // );
+    // formData.append('driveLicensePath', this.myForm.get('licenseFile')?.value);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-
+    //testing purposes
     console.log(this.myForm.value);
 
     this.http
@@ -81,7 +81,14 @@ export class OnboardingComponent implements OnInit {
           middleName: this.myForm.get('mname')?.value,
           preferredName: '-',
           avatar: '-',
-          currentAddress: this.myForm.get('address')?.value,
+          currentAddress: {
+            addressLine1: this.myForm.get('address')?.value,
+            addressLine2: this.myForm.get('address2')?.value,
+            city: this.myForm.get('city')?.value,
+            zipcode: this.myForm.get('zip')?.value,
+            stateName: this.myForm.get('state')?.value,
+            stateAbbr: this.myForm.get('state')?.value,
+          },
           ceilPhone: this.myForm.get('cphone')?.value,
           workPhone: this.myForm.get('wphone')?.value,
           car:
@@ -100,16 +107,24 @@ export class OnboardingComponent implements OnInit {
           driveLicenseExpireDate: this.myForm.get('licenseExp')?.value,
           driveLicensePath: this.myForm.get('licenseFile')?.value,
           Gender: this.myForm.get('gender')?.value,
-          addressLine1: this.myForm.get('address')?.value,
-          addressLine2: this.myForm.get('address2')?.value,
-          city: this.myForm.get('city')?.value,
-          zipcode: this.myForm.get('zip')?.value,
-          stateName: this.myForm.get('state')?.value,
-          stateAbbr: this.myForm.get('state')?.value,
+          reference: {
+            firstName: this.myForm.get('refFname')?.value,
+            lastName: this.myForm.get('refLname')?.value,
+            middleName: this.myForm.get('refMname')?.value,
+            Phone: this.myForm.get('refPhone')?.value,
+            address: {
+              addressLine1: this.myForm.get('refAddress')?.value,
+              addressLine2: this.myForm.get('refAddress2')?.value,
+              city: this.myForm.get('refCity')?.value,
+              zipcode: this.myForm.get('refZip')?.value,
+              stateName: this.myForm.get('refState')?.value,
+              stateAbbr: this.myForm.get('refState')?.value,
+            },
+            email: this.myForm.get('refEmail')?.value,
+            relationship: this.myForm.get('refRelationship')?.value,
+          },
 
-          Phone: this.myForm.get('refPhone')?.value,
-          address: this.myForm.get('refAddress')?.value,
-          relationship: this.myForm.get('refRelationship')?.value,
+          emergencyList: this.myForm.get('contacts')?.value,
         },
         httpOptions
       )
