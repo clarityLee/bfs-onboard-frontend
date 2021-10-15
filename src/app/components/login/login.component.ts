@@ -12,37 +12,16 @@ export class LoginComponent implements OnInit {
   password:string = '';
   username:string = '';
   isUsername:boolean = true;
-  user = {username:'aaa',password:'aaa'};
   
-
   constructor(private router: Router, private http:HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  // onLogin(){
-  //   console.log("click login");
-  //   console.log("email: " + this.email);
-  //   console.log("pass: " + this.password);
-
-  //   if(this.username === this.user.username && this.password === this.user.password){
-  //     localStorage.setItem('username',this.username);
-  //     console.log("pass matched");
-
-  //     this.router.navigate(['/employee/home']);
-  //   }else{
-  //     this.username = '';
-  //     this.email = '';
-  //     this.password = '';
-  //     this.router.navigate(['/'])
-  //   }
-  // }
-
   onLogin = () =>{
     const formData = new FormData();
     formData.append('username',this.username);
     formData.append('password',this.password);
-    //this.http.post("http://localhost:9999/login?username="+this.username + "&password="+this.password,{} )
     this.http.post("http://localhost:9999/login",formData )
       .subscribe(
         data =>{
@@ -65,8 +44,6 @@ export class LoginComponent implements OnInit {
     )
   }
     
-  
-
   onUsername(){
     this.isUsername = true;
   }
