@@ -1,33 +1,33 @@
-<h3>Emergency Contact Section</h3>
-<form>
-    <div *ngFor="let contact of emergencyContacts; let i=index">
-        <h5>The {{i}}th emergency contact</h5>
-        <div class="form-group col-md-6">
-            <label for="inputName">Full Name</label>
-            <input [(ngModel)]='contact.fullname' name='fullname' readonly={{isReadOnly}} value="{{contact.fullname}}" type="name" class="form-control" id="inputName">
+<div class="emergencySection">
+    <h1>Emergency Contact Section</h1>
+    <div class="body">
+        <form>
+            <div *ngFor="let contact of emergencyContacts; let i=index">
+                <h2>The {{i}}th emergency contact</h2>
+                <div class="form-group col-md-6">
+                    <label for="inputName">Full Name</label>
+                    <input [(ngModel)]='contact.fullname' name='fullname' readonly={{isReadOnly}} value="{{contact.fullname}}" type="name" class="form-control" id="inputName">
+                </div>
+                <br>
+                <div class="form-group col-md-6">
+                    <label for="inputPhone">Phone</label>
+                    <input [(ngModel)]='contact.phone' name='phone' readonly={{isReadOnly}} value="{{contact.phone}}" type="phone" class="form-control" id="inputPhone">
+                </div>
+                <br>
+                <div class="form-group col-md-6">
+                    <label for="inputAddress">Address</label>
+                    <input [(ngModel)]='contact.address' name='address' readonly={{isReadOnly}} value="{{contact.address}}" type="address" class="form-control" id="inputAddress">
+                </div>
+                <br>
+            </div>
+        </form>
+        <div *ngIf="isReadOnly === 'readonly'">
+            <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
         </div>
-        <div class="form-group col-md-6">
-            <label for="inputPhone">Phone</label>
-            <input [(ngModel)]='contact.phone' name='phone' readonly={{isReadOnly}} value="{{contact.phone}}" type="phone" class="form-control" id="inputPhone">
+        
+        <div *ngIf="isReadOnly !== 'readonly'">
+            <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
         </div>
-        <div class="form-group col-md-6">
-            <label for="inputAddress">Address</label>
-            <input [(ngModel)]='contact.address' name='address' readonly={{isReadOnly}} value="{{contact.address}}" type="address" class="form-control" id="inputAddress">
-        </div>
-        <hr>
     </div>
-
-    
-    
-    <div *ngIf="isReadOnly === 'readonly'">
-        <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
-    </div>
-    
-    <div *ngIf="isReadOnly !== 'readonly'">
-        <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
-        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
-    </div>
-</form>
-
-<br>
-<hr>
+</div>

@@ -1,0 +1,14 @@
+.contactSection{
+    background-color: rgb(224, 220, 220);
+    margin: 5%;
+    padding:2%;
+}
+
+label{
+    font-size: large;
+}
+
+.body{
+    padding:2%;
+    background-color: white;
+}

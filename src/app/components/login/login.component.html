@@ -1,18 +1,28 @@
-<form>
-    <button (click)="onUsername()" type="button" class="btn btn-link">Username</button>
-    <button (click)="onEmail()" type="button" class="btn btn-link">Email</button>
-    <div class="form-group" *ngIf="isUsername">
-        <label for="exampleInputEmail1">Username</label>
-        <input [(ngModel)]='username' name="username" type="username" class="form-control" id="exampleInputEmail" aria-describedby="usernameHelp" placeholder="Enter username">
-    </div>
-    <div class="form-group" *ngIf="!isUsername">
-      <label for="exampleInputEmail1">Email address</label>
-      <input [(ngModel)]='email' name="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input [(ngModel)]='password' name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="onLogin()" >Login</button>
-    
-</form>
+<div class="container rounded shadow-lg px-4 py-5 mt-5 bg-white"
+     style="max-width: 420px">
+  <h1 class="text-center mb-4">Login</h1>
+  <form>
+      <span style="font-size: large;" (click)="onUsername()">Username&nbsp;&nbsp;&nbsp;|</span>
+      <span style="font-size: large;" (click)="onEmail()">&nbsp;&nbsp;&nbsp;Email</span>
+      <br><br>
+      <div class="form-group" *ngIf="isUsername">
+          <label for="exampleInputEmail1">Username</label>
+          <input [(ngModel)]='username' name="username" type="username" class="form-control" id="exampleInputEmail" aria-describedby="usernameHelp" placeholder="Enter username">
+      </div>
+      <div class="form-group" *ngIf="!isUsername">
+        <label for="exampleInputEmail1">Email</label>
+        <input [(ngModel)]='email' name="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input [(ngModel)]='password' name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+      <br><br>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary" (click)="onLogin()" >Login</button>
+      </div>
+      
+      
+  </form>
+</div>

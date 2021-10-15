@@ -1,34 +1,35 @@
-<h3>ContactInfo Section</h3>
-<form>
-    <div class="form-group col-md-6">
-        <label for="inputPersonalEmail">Personal Email</label>
-        <input [(ngModel)]='personalEmail' name='personalEmail' readonly={{isReadOnly}} value={{personalEmail}} type="personalEmail" class="form-control" id="inputPersonalEmail">
+<div class="contactSection">
+    <h1>ContactInfo Section</h1>
+    <div class="body">
+        <form>
+            <div class="form-group col-md-6">
+                <label for="inputPersonalEmail">Personal Email</label>
+                <input [(ngModel)]='personalEmail' name='personalEmail' readonly={{isReadOnly}} value={{personalEmail}} type="personalEmail" class="form-control" id="inputPersonalEmail">
+            </div>
+            <br>
+            <div class="form-group col-md-6">
+                <label for="inputWorkEmail">Work Email</label>
+                <input [(ngModel)]='workEmail' name='workEmail' readonly={{isReadOnly}} value={{workEmail}} type="workEmail" class="form-control" id="inputWorkEmail">
+            </div>
+            <br>
+            <div class="form-group col-md-6">
+                <label for="inputCellphone">Cellphone</label>
+                <input [(ngModel)]='cellphone' name='cellphone' readonly={{isReadOnly}} value={{cellphone}} type="cellphone" class="form-control" id="inputCellphone">
+            </div>
+            <br>
+            <div class="form-group col-md-6">
+                <label for="inputWorkPhone">Work Email</label>
+                <input [(ngModel)]='workPhone' name='workPhone' readonly={{isReadOnly}} value={{workPhone}} type="workPhone" class="form-control" id="inputWorkPhone">
+            </div>
+        </form>
+        <br>
+        <div *ngIf="isReadOnly === 'readonly'">
+            <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
+        </div>
+        
+        <div *ngIf="isReadOnly !== 'readonly'">
+            <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+        </div>
     </div>
-
-    <div class="form-group col-md-6">
-        <label for="inputWorkEmail">Work Email</label>
-        <input [(ngModel)]='workEmail' name='workEmail' readonly={{isReadOnly}} value={{workEmail}} type="workEmail" class="form-control" id="inputWorkEmail">
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="inputCellphone">Cellphone</label>
-        <input [(ngModel)]='cellphone' name='cellphone' readonly={{isReadOnly}} value={{cellphone}} type="cellphone" class="form-control" id="inputCellphone">
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="inputWorkPhone">Work Email</label>
-        <input [(ngModel)]='workPhone' name='workPhone' readonly={{isReadOnly}} value={{workPhone}} type="workPhone" class="form-control" id="inputWorkPhone">
-    </div>
-    
-    <div *ngIf="isReadOnly === 'readonly'">
-        <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
-    </div>
-    
-    <div *ngIf="isReadOnly !== 'readonly'">
-        <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
-        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
-    </div>
-</form>
-
-<br>
-<hr>
+</div>

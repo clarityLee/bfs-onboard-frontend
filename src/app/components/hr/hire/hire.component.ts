@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef,MatDialog,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-hire',
@@ -27,13 +28,19 @@ export class HireComponent implements OnInit {
   personalInfo={'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'OPEN'};
   comments:any;
 
-  constructor(public dialog:MatDialog) { }
+  constructor(public dialog:MatDialog, private http:HttpClient) { }
 
   ngOnInit(): void {
   }
 
   onGenerate(){
     console.log("on generate ",this.email);
+    const formData = new FormData();
+    formData.append('email', this.email);
+    this.http.post('http://localhost:8080/hr/sendRegisterToken', formData).subscribe(
+      (response) => console.log("success"),
+      (response) => console.log("failed")
+    )
   }
 
   onDetails(){

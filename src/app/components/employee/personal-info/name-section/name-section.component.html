@@ -1,54 +1,57 @@
-<h3>Name Section</h3>
-<form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputFirstName">Firstname</label>
-        <input [(ngModel)]='firstname' name='firstname' readonly={{isReadOnly}} value={{firstname}} type="firstname" class="form-control" id="inputFirstName">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputLastName">Lastname</label>
-        <input [(ngModel)]='lastname' name='lastname' readonly={{isReadOnly}} value={{lastname}} type="lastname" class="form-control" id="inputLastName" value="bbb">
-      </div>
-    </div>
+<div class="nameSection">
+  <h1>Name Section</h1>
+  <div class="body">
+    <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputFirstName">Firstname</label>
+            <input [(ngModel)]='firstname' name='firstname' readonly={{isReadOnly}} value={{firstname}} type="firstname" class="form-control" id="inputFirstName">
+          </div>
+          <br>
+          <div class="form-group col-md-6">
+            <label for="inputLastName">Lastname</label>
+            <input [(ngModel)]='lastname' name='lastname' readonly={{isReadOnly}} value={{lastname}} type="lastname" class="form-control" id="inputLastName" value="bbb">
+          </div>
+          <br>
+        </div>
 
-    <div class="form-group col-md-6">
-        <label for="inputPreferredName">PreferredName</label>
-        <input [(ngModel)]='preferredname' name='preferredname' readonly={{isReadOnly}} value={{preferredname}} type="preferredName" class="form-control" id="inputPreferredName">
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="inputBirth">Birth</label>
-        <input [(ngModel)]='birth' name='birth' readonly={{isReadOnly}} value={{birth}} type="birth" class="form-control" id="inputbirth">
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="inputAge">Age</label>
-        <input [(ngModel)]='age' name='age' readonly={{isReadOnly}} value={{age}} type="age" class="form-control" id="inputage">
-    </div>
-    <div class="form-group">
-        <label for="FormControlSelect">Gender</label>
-        <select [(ngModel)]='gender' name='gender' value={{gender}} disabled={{isdisabled}} class="form-control" id="FormControlSelect1">
-          <option value='male'>Male</option>
-          <option value='female'>Female</option>
-          <option value='nochoose'>Don't want to choose</option>
-        </select>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label for="inputSsn">SSN</label>
-        <input [(ngModel)]='ssn' name='ssn' readonly={{isReadOnly}} value={{ssn}} type="ssn" class="form-control" id="inputssn">
-    </div>
-
-    <div *ngIf="isReadOnly === 'readonly'">
+        <div class="form-group col-md-6">
+            <label for="inputPreferredName">PreferredName</label>
+            <input [(ngModel)]='preferredname' name='preferredname' readonly={{isReadOnly}} value={{preferredname}} type="preferredName" class="form-control" id="inputPreferredName">
+        </div>
+        <br>
+        <div class="form-group col-md-6">
+            <label for="inputBirth">Birth</label>
+            <input [(ngModel)]='birth' name='birth' readonly={{isReadOnly}} value={{birth}} type="birth" class="form-control" id="inputbirth">
+        </div>
+        <br>
+        <div class="form-group col-md-6">
+            <label for="inputAge">Age</label>
+            <input [(ngModel)]='age' name='age' readonly={{isReadOnly}} value={{age}} type="age" class="form-control" id="inputage">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="FormControlSelect">Gender</label>
+            <select [(ngModel)]='gender' name='gender' value={{gender}} disabled={{isdisabled}} class="form-control" id="FormControlSelect1">
+              <option value='male'>Male</option>
+              <option value='female'>Female</option>
+              <option value='nochoose'>Don't want to choose</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group col-md-6">
+            <label for="inputSsn">SSN</label>
+            <input [(ngModel)]='ssn' name='ssn' readonly={{isReadOnly}} value={{ssn}} type="ssn" class="form-control" id="inputssn">
+        </div>
+      </form>
+      <br>
+      <div *ngIf="isReadOnly === 'readonly'">
         <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
-    </div>
+      </div>
     
-    <div *ngIf="isReadOnly !== 'readonly'">
-        <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
-        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
-    </div>
-  </form>
-
-<br>
-  <hr>
-
+      <div *ngIf="isReadOnly !== 'readonly'">
+          <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+          <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+      </div>
+  </div>
+</div>

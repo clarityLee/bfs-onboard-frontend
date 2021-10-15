@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.http.post<any>("http://localhost:9999/login",formData )
       .subscribe(
         data =>{
+          localStorage.setItem('username',this.username);
           if (data.permissions.includes('hrpage'))
             this.router.navigate(['/hr/home']);
           else
