@@ -8,14 +8,15 @@ import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
   styleUrls: ['./emergency-contact.component.css'],
 })
 export class EmergencyContactComponent implements OnInit {
-  @Input() myForm = this.formBuilder.group({
+  @Input() myForm: FormGroup = new FormGroup({});
+  @Input() form = this.formBuilder.group({
     contacts: this.formBuilder.array([this.createContact()]),
   });
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.myForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       contacts: this.formBuilder.array([this.createContact()]),
     });
   }
@@ -36,7 +37,7 @@ export class EmergencyContactComponent implements OnInit {
   }
 
   addContact() {
-    const contacts = this.myForm.controls.contacts as FormArray;
+    const contacts = this.form.controls.contacts as FormArray;
     contacts.push(
       this.formBuilder.group({
         cFname: new FormControl(''),
@@ -52,12 +53,21 @@ export class EmergencyContactComponent implements OnInit {
         cRelationship: new FormControl(''),
       })
     );
+
+    console.log(JSON.stringify(this.myForm.get('contacts')?.value));
   }
   get formData() {
     return <FormArray>this.myForm.get('contacts');
   }
 
+  save() {
+    this.myForm.addControl('contacts', new FormControl());
+    this.myForm
+      .get('contacts')
+      ?.setValue(JSON.stringify(this.form.get('contacts')?.value));
+    console.log(this.myForm.get('contacts')?.value);
+  }
   onSubmit(): void {
-    console.log(this.myForm.value);
+    console.log(this.myForm.get('contacts')?.value);
   }
 }

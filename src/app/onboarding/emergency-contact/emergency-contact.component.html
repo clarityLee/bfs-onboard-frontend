@@ -1,7 +1,7 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div
     formArrayName="contacts"
-    *ngFor="let contacts of myForm.controls.contacts?.value; let i = index"
+    *ngFor="let contacts of form.controls.contacts?.value; let i = index"
   >
     <ng-container [formGroupName]="i">
       <label for="cFname">First Name: </label>
@@ -39,4 +39,5 @@
     </ng-container>
   </div>
   <button (click)="addContact()">Add</button>
+  <button (click)="save()">save</button>
 </form>
