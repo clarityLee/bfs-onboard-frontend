@@ -24,7 +24,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { On_boardingModule } from './onboarding/onboarding.module';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { TestComponent } from './components/test/test.component';
 import { VisaStatusComponent } from './components/visa-status/visa-status.component';
 import { VisaStatusManagementComponent } from './components/hr/visa-status-management/visa-status-management.component';
