@@ -12,48 +12,23 @@ export class LoginComponent implements OnInit {
   password:string = '';
   username:string = '';
   isUsername:boolean = true;
-  user = {username:'aaa',password:'aaa'};
-  
 
   constructor(private router: Router, private http:HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  // onLogin(){
-  //   console.log("click login");
-  //   console.log("email: " + this.email);
-  //   console.log("pass: " + this.password);
-
-  //   if(this.username === this.user.username && this.password === this.user.password){
-  //     localStorage.setItem('username',this.username);
-  //     console.log("pass matched");
-
-  //     this.router.navigate(['/employee/home']);
-  //   }else{
-  //     this.username = '';
-  //     this.email = '';
-  //     this.password = '';
-  //     this.router.navigate(['/'])
-  //   }
-  // }
-
   onLogin = () =>{
     const formData = new FormData();
     formData.append('username',this.username);
     formData.append('password',this.password);
-    //this.http.post("http://localhost:9999/login?username="+this.username + "&password="+this.password,{} )
-    this.http.post("http://localhost:9999/login",formData )
+    this.http.post<any>("http://localhost:9999/login",formData )
       .subscribe(
         data =>{
-          console.log("post response ",data);
-          localStorage.setItem('username',this.username);
-          console.log(JSON.parse(JSON.stringify(data)).permissions[0]);
-          if(JSON.parse(JSON.stringify(data)).permissions[0].indexOf("employee") !== -1){
-            this.router.navigate(['/employee/home']);
-          }else{
+          if (data.permissions.includes('hrpage'))
             this.router.navigate(['/hr/home']);
-          }
+          else
+            this.router.navigate(['/employee/home'])
         },
         error =>{
           console.log("Error ", error);
@@ -64,8 +39,6 @@ export class LoginComponent implements OnInit {
         }
     )
   }
-    
-  
 
   onUsername(){
     this.isUsername = true;
