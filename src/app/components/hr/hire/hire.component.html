@@ -1,1 +1,39 @@
-<p>hire works!</p>
+<input [(ngModel)]='email' name='email' type="email" id="email" placeholder="email">
+<button type="submit" class="btn btn-primary" (click)="onGenerate()" >Generate Token</button>
+<hr>
+<br>
+
+<h3>Application Review</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Visa Type</th>
+        <th scope="col">Visa Start Date</th>
+        <th scope="col">Visa End Date</th>
+        <th scope="col">Application Status</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of onboardingAppData; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{data.firstname}}</td>
+            <td>{{data.lastname}}</td>
+            <td>{{data.visaType}}</td>
+            <td>{{data.visaStartDate}}</td>
+            <td>{{data.visaEndDate}}</td>
+
+            <td *ngIf="data.appStatus === 'OPEN'" [ngStyle]="{'color': 'blue'}">{{data.appStatus}}</td>
+            <td *ngIf="data.appStatus === 'Pending'" [ngStyle]="{'color': 'purple'}">{{data.appStatus}}</td>    
+            <td *ngIf="data.appStatus === 'Rejected'" [ngStyle]="{'color': 'red'}">{{data.appStatus}}</td>    
+            <td *ngIf="data.appStatus === 'Completed'" [ngStyle]="{'color': 'green'}">{{data.appStatus}}</td>
+
+            <td>
+                <button type="submit" class="btn btn-primary" (click)="onDetails()" >Details</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>

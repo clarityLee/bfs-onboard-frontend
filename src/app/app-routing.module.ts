@@ -16,9 +16,15 @@ import {EmployeeProfileComponent} from './components/hr/employee-profile/employe
 import {VisaStatusManagementComponent} from './components/hr/visa-status-management/visa-status-management.component';
 import { HouseManagementComponent } from './components/hr/house-management/house-management.component';
 import { HrComponent } from './components/hr/hr.component';
+import { HireComponent } from './components/hr/hire/hire.component';
+import { TestComponent } from './components/test/test.component';
 
 
 const routes: Routes = [
+  {
+    path:'test',
+    component: TestComponent
+  },
   {
     path:'' ,
     component: LoginComponent
@@ -68,6 +74,10 @@ const routes: Routes = [
       {
         path:'visaStatusManagement',
         component: VisaStatusManagementComponent
+      },
+      {
+        path:'hire',
+        component: HireComponent
       },
       {
         path:'houseManagement', 

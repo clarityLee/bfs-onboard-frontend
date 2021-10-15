@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Application Review</h2>
+<mat-dialog-content class="mat-typography">
+    <h3>Personal Info</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <!-- 'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'OPEN'}; -->
+            <th scope="col">firstname</th>
+            <th scope="col">lastname</th>
+            <th scope="col">visaType</th>
+            <th scope="col">visaStartDate</th>
+            <th scope="col">visaEndDate</th>
+            <th scope="col">appStatus</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{data.pInfo.firstname}}</td>
+                <td>{{data.pInfo.lastname}}</td>
+                <td>{{data.pInfo.visaType}}</td>
+                <td>{{data.pInfo.visaStartDate}}</td>
+                <td>{{data.pInfo.visaEndDate}}</td>
+                <td>{{data.pInfo.appStatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <br>
+    
+
+
+    <h3>Documentation Application</h3>
+    <div *ngFor = "let doc of data.docs, let i=index">
+        <div>{{doc.title}}                                 
+            <button type="submit" class="btn btn-primary" (click)="onView()" >View</button>
+        </div>
+        <input [(ngModel)]='comments' name='comments' type="comments" id="comments" placeholder="comments...">
+        <br>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="onAddComments()" >Add Comments</button>
+    <br><br>
+    
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button type="submit" class="btn btn-primary" (click)="onClose()" >Close</button>
+    <button type="submit" class="btn btn-primary" (click)="onApprove()" >Approve</button>
+    <button type="submit" class="btn btn-primary" (click)="onReject()" >Reject</button>
+  <!-- <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Approve</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Reject</button> -->
+</mat-dialog-actions>

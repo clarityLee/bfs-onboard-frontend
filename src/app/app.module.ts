@@ -25,11 +25,14 @@ import { On_boardingModule } from './onboarding/onboarding.module';
 import { PersonalInfoComponent } from './components/employee/personal-info/personal-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
-import { TestComponent } from './components/test/test.component';
 import { VisaStatusComponent } from './components/employee/visa-status/visa-status.component';
 import { VisaStatusManagementComponent } from './components/hr/visa-status-management/visa-status-management.component';
 import { HrComponent } from './components/hr/hr.component';
-//import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalEmployeeDetails } from './components/hr/hire/hire.component';
+
+import { TestComponent } from './components/test/test.component';
+import { DialogContentExampleDialog } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,6 @@ import { HrComponent } from './components/hr/hr.component';
     EmploymentSectionComponent,
     EmergencyContactSectionComponent,
     DocumentSectionComponent,
-    TestComponent,
     HrHomeComponent,
     EmployeeProfileComponent,
     VisaStatusManagementComponent,
@@ -55,7 +57,10 @@ import { HrComponent } from './components/hr/hr.component';
     HouseManagementComponent,
     HrNavigationComponent,
     RegisterComponent,
-    HrComponent
+    HrComponent,
+    ModalEmployeeDetails,
+    TestComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     AppRoutingModule,
@@ -64,7 +69,8 @@ import { HrComponent } from './components/hr/hr.component';
     FormsModule,
     HttpClientModule,
     On_boardingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

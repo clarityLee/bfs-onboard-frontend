@@ -8,23 +8,23 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class TestComponent implements OnInit {
 
-  // constructor(public dialog:MatDialog) { }
-  constructor() { }
+  constructor(public dialog:MatDialog) { }
+  // constructor() { }
 
   ngOnInit(): void {
   }
 
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
 
-// @Component({
-//   selector: 'dialog-content-example-dialog',
-//   templateUrl: 'dialog-content-example-dialog.html',
-// })
-// export class DialogContentExampleDialog {}
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+})
+export class DialogContentExampleDialog {}
