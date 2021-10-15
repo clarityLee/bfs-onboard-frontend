@@ -1,41 +1,41 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form">
   <div
     formArrayName="contacts"
     *ngFor="let contacts of form.controls.contacts?.value; let i = index"
   >
     <ng-container [formGroupName]="i">
       <label for="cFname">First Name: </label>
-      <input id="cFname" type="text" formControlName="cFname" />
+      <input id="cFname" type="text" formControlName="firstName" />
 
       <label for="cLname">Last Name: </label>
-      <input id="cLname" type="text" formControlName="cLname" />
+      <input id="cLname" type="text" formControlName="lastName" />
 
       <label for="cMname">Middle Name: </label>
-      <input id="cMname" type="text" formControlName="cMname" />
+      <input id="cMname" type="text" formControlName="middleName" />
 
       <label for="cPhone">Phone Number: </label>
-      <input id="cPhone" type="text" formControlName="cPhone" />
+      <input id="cPhone" type="text" formControlName="Phone" />
+      <div formGroupName="address">
+        <label for="cAddress">Address: </label>
+        <input id="cAddress" type="text" formControlName="addressLine1" />
 
-      <label for="cAddress">Address: </label>
-      <input id="cAddress" type="text" formControlName="cAddress" />
+        <label for="cAddress2">Address 2: </label>
+        <input id="cAddress2" type="text" formControlName="addressLine2" />
 
-      <label for="cAddress2">Address 2: </label>
-      <input id="cAddress2" type="text" formControlName="cAddress2" />
+        <label for="cCity">City: </label>
+        <input id="cCity" type="text" formControlName="city" />
 
-      <label for="cCity">City: </label>
-      <input id="cCity" type="text" formControlName="cCity" />
+        <label for="cState">State: </label>
+        <input id="cState" type="text" formControlName="stateName" />
 
-      <label for="cState">State: </label>
-      <input id="cState" type="text" formControlName="cState" />
-
-      <label for="cZip">Postal Code: </label>
-      <input id="cZip" type="text" formControlName="cZip" />
-
+        <label for="cZip">Postal Code: </label>
+        <input id="cZip" type="text" formControlName="zipcode" />
+      </div>
       <label for="cEmail">Email: </label>
-      <input id="cEmail" type="email" formControlName="cEmail" />
+      <input id="cEmail" type="email" formControlName="email" />
 
       <label for="cRelationship">Relationship: </label>
-      <input id="cRelationship" type="text" formControlName="cRelationship" />
+      <input id="cRelationship" type="text" formControlName="relationship" />
     </ng-container>
   </div>
   <button (click)="addContact()">Add</button>

@@ -15,24 +15,23 @@ export class EmergencyContactComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      contacts: this.formBuilder.array([this.createContact()]),
-    });
-  }
+  ngOnInit(): void {}
   createContact(): FormGroup {
     return new FormGroup({
-      cFname: new FormControl(''),
-      cLname: new FormControl(''),
-      cMname: new FormControl(''),
-      cPhone: new FormControl(''),
-      cAddress: new FormControl(''),
-      cAddress2: new FormControl(''),
-      cCity: new FormControl(''),
-      cState: new FormControl(''),
-      cZip: new FormControl(''),
-      cEmail: new FormControl(''),
-      cRelationship: new FormControl(''),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      middleName: new FormControl(''),
+      Phone: new FormControl(''),
+      address: this.formBuilder.group({
+        addressLine1: new FormControl(''),
+        addressLine2: new FormControl(''),
+        city: new FormControl(''),
+        stateName: new FormControl(''),
+        zipcode: new FormControl(''),
+        stateAbbr: new FormControl(''),
+      }),
+      email: new FormControl(''),
+      relationship: new FormControl(''),
     });
   }
 
@@ -40,24 +39,22 @@ export class EmergencyContactComponent implements OnInit {
     const contacts = this.form.controls.contacts as FormArray;
     contacts.push(
       this.formBuilder.group({
-        cFname: new FormControl(''),
-        cLname: new FormControl(''),
-        cMname: new FormControl(''),
-        cPhone: new FormControl(''),
-        cAddress: new FormControl(''),
-        cAddress2: new FormControl(''),
-        cCity: new FormControl(''),
-        cState: new FormControl(''),
-        cZip: new FormControl(''),
-        cEmail: new FormControl(''),
-        cRelationship: new FormControl(''),
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        middleName: new FormControl(''),
+        Phone: new FormControl(''),
+        address: this.formBuilder.group({
+          addressLine1: new FormControl(''),
+          addressLine2: new FormControl(''),
+          city: new FormControl(''),
+          stateName: new FormControl(''),
+          zipcode: new FormControl(''),
+          stateAbbr: new FormControl(''),
+        }),
+        email: new FormControl(''),
+        relationship: new FormControl(''),
       })
     );
-
-    console.log(JSON.stringify(this.myForm.get('contacts')?.value));
-  }
-  get formData() {
-    return <FormArray>this.myForm.get('contacts');
   }
 
   save() {
@@ -65,9 +62,7 @@ export class EmergencyContactComponent implements OnInit {
     this.myForm
       .get('contacts')
       ?.setValue(JSON.stringify(this.form.get('contacts')?.value));
-    console.log(this.myForm.get('contacts')?.value);
-  }
-  onSubmit(): void {
+    //testing purposes
     console.log(this.myForm.get('contacts')?.value);
   }
 }
