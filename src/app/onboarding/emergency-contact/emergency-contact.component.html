@@ -1,10 +1,9 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div formArrayName="contacts">
-    <div
-      class="row"
-      *ngFor="let contacts of formData.controls; let i = index"
-      [formGroupName]="i"
-    >
+  <div
+    formArrayName="contacts"
+    *ngFor="let contacts of myForm.controls.contacts?.value; let i = index"
+  >
+    <ng-container [formGroupName]="i">
       <label for="cFname">First Name: </label>
       <input id="cFname" type="text" formControlName="cFname" />
 
@@ -37,9 +36,7 @@
 
       <label for="cRelationship">Relationship: </label>
       <input id="cRelationship" type="text" formControlName="cRelationship" />
-      <button onclick="addContact">Add Contact</button>
-    </div>
+    </ng-container>
   </div>
-  <p>Complete the form to enable button.</p>
-  <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  <button (click)="addContact()">Add</button>
 </form>

@@ -10,5 +10,11 @@ export class PersonalDocsComponent implements OnInit {
   @Input() myForm: FormGroup = new FormGroup({});
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myForm.addControl('OPT', new FormControl());
+  }
+
+  onSubmit(): void {
+    console.log(this.myForm.value);
+  }
 }
