@@ -65,10 +65,18 @@
         <input type="date" formControlName="authExp" />
       </label>
       <label>Upload your work authorization</label>
-      <input type="file" formControlName="authFile" />
+      <input
+        type="file"
+        (change)="onWorkAuthSelected($event)"
+        accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+      />
+      <button (click)="previewInNewWindow()">preview</button>
     </div>
   </div>
-
+  <div class="form-group" *ngIf="myForm.value.authType === 'other'">
+    <label for="workAuth">Specify Work Authorization: </label>
+    <input id="ssn" type="text" formControlName="workAuth" />
+  </div>
   <div class="form-group">
     <label for="license">Driver's license?: </label>
     <select class="form-control" formControlName="license" id="license">
@@ -76,10 +84,7 @@
       <option>no</option>
     </select>
   </div>
-  <div class="form-group" *ngIf="myForm.value.authType === 'other'">
-    <label for="workAuth">Specify Work Authorization: </label>
-    <input id="workAuth" type="text" formControlName="workAuth" />
-  </div>
+
   <div>
     <div class="form-group" *ngIf="myForm.value.license === 'yes'">
       <label for="licenseNum">License Number: </label>
@@ -89,7 +94,12 @@
         <input type="date" formControlName="licenseExp" />
       </label>
       <label>Upload your driver license</label>
-      <input type="file" formControlName="licenseFile" />
+      <input
+        type="file"
+        (change)="onLicenseSelected($event)"
+        accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+      />
+      <button (click)="previewInNewWindow2()">preview</button>
     </div>
   </div>
 </form>

@@ -9,6 +9,7 @@ import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
   styleUrls: ['./onboarding.component.css'],
 })
 export class OnboardingComponent implements OnInit {
+  check: boolean = false;
   res = 'false';
   citizen = 'false';
   greencard = 'false';
