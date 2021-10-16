@@ -1,0 +1,7 @@
+<mat-dialog-content *ngIf="data.info === 'success'" class="mat-typography">
+    Email containing token has been sent out
+</mat-dialog-content>
+
+<mat-dialog-content *ngIf="data.info !== 'success'" class="mat-typography">
+    Failed to send email, please try another email
+</mat-dialog-content>

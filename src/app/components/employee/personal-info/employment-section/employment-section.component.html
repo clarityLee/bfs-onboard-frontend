@@ -1,40 +1,40 @@
 <div class="employmentSection">
     <h1>Employment Section</h1>
     <div class="body">
-        <form>
+        <form [formGroup]='form'>
             <div class="form-group col-md-6">
                 <label for="inputWorkAuthorization">Work Authorization</label>
-                <input [(ngModel)]='workAuthorization' name='workAuthorization' readonly={{isReadOnly}} value={{workAuthorization}} type="workAuthorization" class="form-control" id="inputWorkAuthorization">
+                <input formControlName='workAuthorization' readonly={{isReadOnly}} value={{workAuthorization}} type="workAuthorization" class="form-control" id="inputWorkAuthorization">
             </div>
             <br>
 
             <div class="form-group col-md-6">
                 <label for="inputWorkAuthStartDate">Authorization Start Date</label>
-                <input [(ngModel)]='workAuthStartDate' name='workAuthStartDate' readonly={{isReadOnly}} value={{workAuthStartDate}} type="workAuthStartDate" class="form-control" id="inputWorkAuthStartDate">
+                <input formControlName='workAuthStartDate' readonly={{isReadOnly}} value={{workAuthStartDate}} type="workAuthStartDate" class="form-control" id="inputWorkAuthStartDate">
             </div>
             <br>
 
             <div class="form-group col-md-6">
                 <label for="inputWorkAuthEndDate">Authorization End Date</label>
-                <input [(ngModel)]='workAuthEndDate' name='workAuthEndDate' readonly={{isReadOnly}} value={{workAuthEndDate}} type="workAuthEndDate" class="form-control" id="inputWorkAuthEndDate">
+                <input formControlName='workAuthEndDate' readonly={{isReadOnly}} value={{workAuthEndDate}} type="workAuthEndDate" class="form-control" id="inputWorkAuthEndDate">
             </div>
             <br>
 
             <div class="form-group col-md-6">
                 <label for="inputEmploymentStartDate">Employment Start Date</label>
-                <input [(ngModel)]='employmentStartDate' name='employmentStartDate' readonly={{isReadOnly}} value={{employmentStartDate}} type="employmentStartDate" class="form-control" id="inputEmploymentStartDate">
+                <input formControlName='employmentStartDate' readonly={{isReadOnly}} value={{employmentStartDate}} type="employmentStartDate" class="form-control" id="inputEmploymentStartDate">
             </div>
             <br>
 
             <div class="form-group col-md-6">
                 <label for="inputEmploymentEndDate">Employment End Date</label>
-                <input [(ngModel)]='employmentEndDate' name='employmentEndDate' readonly={{isReadOnly}} value={{employmentEndDate}} type="employmentEndDate" class="form-control" id="inputEmploymentEndDate">
+                <input formControlName='employmentEndDate' readonly={{isReadOnly}} value={{employmentEndDate}} type="employmentEndDate" class="form-control" id="inputEmploymentEndDate">
             </div>
             <br>
 
             <div class="form-group col-md-6">
                 <label for="inputTitle">Title</label>
-                <input [(ngModel)]='title' name='title' readonly={{isReadOnly}} value={{title}} type="title" class="form-control" id="inputTitle">
+                <input formControlName='title' readonly={{isReadOnly}} value={{title}} type="title" class="form-control" id="inputTitle">
             </div>
             
         </form>

@@ -1,25 +1,25 @@
 <div class="contactSection">
     <h1>ContactInfo Section</h1>
     <div class="body">
-        <form>
+        <form [formGroup]='form'>
             <div class="form-group col-md-6">
                 <label for="inputPersonalEmail">Personal Email</label>
-                <input [(ngModel)]='personalEmail' name='personalEmail' readonly={{isReadOnly}} value={{personalEmail}} type="personalEmail" class="form-control" id="inputPersonalEmail">
+                <input formControlName='personalEmail' readonly={{isReadOnly}} value={{personalEmail}} type="personalEmail" class="form-control" id="inputPersonalEmail">
             </div>
             <br>
             <div class="form-group col-md-6">
                 <label for="inputWorkEmail">Work Email</label>
-                <input [(ngModel)]='workEmail' name='workEmail' readonly={{isReadOnly}} value={{workEmail}} type="workEmail" class="form-control" id="inputWorkEmail">
+                <input formControlName='workEmail' readonly={{isReadOnly}} value={{workEmail}} type="workEmail" class="form-control" id="inputWorkEmail">
             </div>
             <br>
             <div class="form-group col-md-6">
                 <label for="inputCellphone">Cellphone</label>
-                <input [(ngModel)]='cellphone' name='cellphone' readonly={{isReadOnly}} value={{cellphone}} type="cellphone" class="form-control" id="inputCellphone">
+                <input formControlName='cellphone' readonly={{isReadOnly}} value={{cellphone}} type="cellphone" class="form-control" id="inputCellphone">
             </div>
             <br>
             <div class="form-group col-md-6">
                 <label for="inputWorkPhone">Work Email</label>
-                <input [(ngModel)]='workPhone' name='workPhone' readonly={{isReadOnly}} value={{workPhone}} type="workPhone" class="form-control" id="inputWorkPhone">
+                <input formControlName='workPhone' readonly={{isReadOnly}} value={{workPhone}} type="workPhone" class="form-control" id="inputWorkPhone">
             </div>
         </form>
         <br>

@@ -30,6 +30,8 @@ import { VisaStatusManagementComponent } from './components/hr/visa-status-manag
 import { HrComponent } from './components/hr/hr.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalEmployeeDetails } from './components/hr/hire/hire.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ModalTokenSent } from './components/hr/hire/hire.component';
 
 import { TestComponent } from './components/test/test.component';
 import { DialogContentExampleDialog } from './components/test/test.component';
@@ -59,6 +61,7 @@ import { DialogContentExampleDialog } from './components/test/test.component';
     RegisterComponent,
     HrComponent,
     ModalEmployeeDetails,
+    ModalTokenSent,
     TestComponent,
     DialogContentExampleDialog
   ],
@@ -70,7 +73,8 @@ import { DialogContentExampleDialog } from './components/test/test.component';
     HttpClientModule,
     On_boardingModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

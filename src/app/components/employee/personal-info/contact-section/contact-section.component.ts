@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-section',
@@ -6,15 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-section.component.css']
 })
 export class ContactSectionComponent implements OnInit {
-  personalEmail:string = 'a@a.com';
-  workEmail:string = 'b@b.com';
-  cellphone:string = '3123433434';
-  workPhone:string = '2343534564';
   isReadOnly:string = 'readonly';
+
+  personalEmail = new FormControl(null,[Validators.required]);
+  workEmail = new FormControl(null, [Validators.required]);
+  cellphone = new FormControl(null, [Validators.required]);
+  workPhone = new FormControl(null, [Validators.required]);
+  form: FormGroup = new FormGroup({
+    personalEmail:this.personalEmail,
+    workEmail:this.workEmail,
+    cellphone:this.cellphone,
+    workPhone:this.workPhone
+  });
+
+
 
   constructor() { }
 
   ngOnInit(): void {
+    this.personalEmail.setValue('a@a.com');
+    this.workEmail.setValue('b@b.com');
+    this.cellphone.setValue('3123433434');
+    this.workPhone.setValue('2343534564');
   }
 
   onEdit(){
@@ -24,6 +38,7 @@ export class ContactSectionComponent implements OnInit {
   //save to database
   onSave(){
     console.log('save');
+    console.log(this.form.get('workEmail')?.value);
     this.isReadOnly = 'readonly';
   }
 
@@ -31,11 +46,12 @@ export class ContactSectionComponent implements OnInit {
   onCancel(){
     console.log('cancel');
     if(confirm('Are you sure to discard all your changes')){
+      this.personalEmail.setValue('a@a.com');
+      this.workEmail.setValue('b@b.com');
+      this.cellphone.setValue('3123433434');
+      this.workPhone.setValue('2343534564');
+
       this.isReadOnly = 'readonly';
-      this.personalEmail = 'a@a.com';
-      this.workEmail = 'b@b.com';
-      this.cellphone = '3123433434';
-      this.workPhone = '2343534564';
     }
 
   }

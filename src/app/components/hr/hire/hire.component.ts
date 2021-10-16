@@ -35,12 +35,22 @@ export class HireComponent implements OnInit {
 
   onGenerate(){
     console.log("on generate ",this.email);
-    const formData = new FormData();
-    formData.append('email', this.email);
-    this.http.post('http://localhost:8080/hr/sendRegisterToken', formData).subscribe(
-      (response) => console.log("success"),
-      (response) => console.log("failed")
-    )
+    if(confirm('Are you sure you want to generate a token')){
+      const formData = new FormData();
+      formData.append('email', this.email);
+      this.http.post('http://localhost:8080/hr/sendRegisterToken', formData).subscribe(
+        (response) => this.dialog.open(ModalTokenSent,{
+                        data:{info:"success"},
+                        position: {top: '20px',left: '40%'}
+                      }),
+        (response) => this.dialog.open(ModalTokenSent,{
+                        data:{info:"failed"},
+                        position: {top: '20px',left: '40%'}
+                      })
+      )
+
+    }
+    
   }
 
   onDetails(){
@@ -58,10 +68,6 @@ export class HireComponent implements OnInit {
 
   onAddComments(){
     console.log("add comments for docs ");
-  }
-
-  onView(){
-    console.log('view doc');
   }
 }
 
@@ -96,5 +102,14 @@ export class ModalEmployeeDetails {
 
   onAddComments(){
     console.log("add comments in modal");
+  }
+}
+
+@Component({
+  selector: 'modal-token-sent',
+  templateUrl: 'modal-token-sent.html',
+})
+export class ModalTokenSent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef:MatDialogRef<ModalTokenSent>){
   }
 }

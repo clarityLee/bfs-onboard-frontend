@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employment-section',
@@ -6,18 +7,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employment-section.component.css']
 })
 export class EmploymentSectionComponent implements OnInit {
-  workAuthorization:string="f1";
-  workAuthStartDate:string="1/1/2020";
-  workAuthEndDate:string="1/1/2020";
-  employmentStartDate:string="1/1/2020";
-  employmentEndDate:string="1/1/2020";
-  title:string="sde";
   isReadOnly:string = 'readonly';
 
+  workAuthorization = new FormControl(null,[Validators.required]);
+  workAuthStartDate = new FormControl(null, [Validators.required]);
+  workAuthEndDate = new FormControl(null, [Validators.required]);
+  employmentStartDate = new FormControl(null,[Validators.required]);
+  employmentEndDate = new FormControl(null, [Validators.required]);
+  title = new FormControl(null, [Validators.required]);
 
-  constructor() { }
+  form: FormGroup = new FormGroup({
+    workAuthorization:this.workAuthorization,
+    workAuthStartDate:this.workAuthStartDate,
+    workAuthEndDate:this.workAuthEndDate,
+    employmentStartDate:this.employmentStartDate,
+    employmentEndDate:this.employmentEndDate,
+    title:this.title,
+  });
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.workAuthorization.setValue("f1");
+      this.workAuthStartDate.setValue("1/1/2020");
+      this.workAuthEndDate.setValue("1/1/2020");
+      this.employmentStartDate.setValue("1/1/2020");
+      this.employmentEndDate.setValue("1/1/2020");
+      this.title.setValue("sde");
+      this.isReadOnly = 'readonly';
   }
 
   onEdit(){
@@ -27,6 +45,7 @@ export class EmploymentSectionComponent implements OnInit {
   //save to database
   onSave(){
     console.log('save');
+    console.log("title ", this.form.get('title')?.value)
     this.isReadOnly = 'readonly';
   }
 
@@ -34,12 +53,13 @@ export class EmploymentSectionComponent implements OnInit {
   onCancel(){
     console.log('cancel');
     if(confirm('Are you sure to discard all your changes')){
-      this.workAuthorization="f1";
-      this.workAuthStartDate="1/1/2020";
-      this.workAuthEndDate="1/1/2020";
-      this.employmentStartDate="1/1/2020";
-      this.employmentEndDate="1/1/2020";
-      this.title="sde";
+      this.workAuthorization.setValue("f1");
+      this.workAuthStartDate.setValue("1/1/2020");
+      this.workAuthEndDate.setValue("1/1/2020");
+      this.employmentStartDate.setValue("1/1/2020");
+      this.employmentEndDate.setValue("1/1/2020");
+      this.title.setValue("sde");
+      this.isReadOnly = 'readonly';
     }
 
   }
