@@ -70,7 +70,12 @@
         (change)="onWorkAuthSelected($event)"
         accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
       />
-      <button (click)="previewInNewWindow()">preview</button>
+      <button
+        (click)="previewInNewWindow()"
+        [disabled]="!myForm.value.authFile"
+      >
+        preview
+      </button>
     </div>
   </div>
   <div class="form-group" *ngIf="myForm.value.authType === 'other'">
@@ -99,7 +104,12 @@
         (change)="onLicenseSelected($event)"
         accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
       />
-      <button (click)="previewInNewWindow2()">preview</button>
+      <button
+        (click)="previewInNewWindow2()"
+        [disabled]="!myForm.value.licenseFile"
+      >
+        preview
+      </button>
     </div>
   </div>
 </form>

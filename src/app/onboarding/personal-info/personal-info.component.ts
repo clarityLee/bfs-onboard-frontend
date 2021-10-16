@@ -1,5 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -9,18 +14,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PersonalInfoComponent implements OnInit {
   @Input() myForm: FormGroup = new FormGroup({});
+
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.myForm.addControl('fname', new FormControl());
-    this.myForm.addControl('lname', new FormControl());
+    this.myForm.addControl('fname', new FormControl('', Validators.required));
+    this.myForm.addControl('lname', new FormControl('', Validators.required));
     this.myForm.addControl('mname', new FormControl());
-    this.myForm.addControl('ssn', new FormControl());
-    this.myForm.addControl('gender', new FormControl());
-    this.myForm.addControl('dob', new FormControl());
-    this.myForm.addControl('citizenship', new FormControl());
+    this.myForm.addControl('ssn', new FormControl('', Validators.required));
+    this.myForm.addControl('gender', new FormControl('', Validators.required));
+    this.myForm.addControl('dob', new FormControl('', Validators.required));
+    this.myForm.addControl(
+      'citizenship',
+      new FormControl('', Validators.required)
+    );
     this.myForm.addControl('citizenType', new FormControl());
-    this.myForm.addControl('license', new FormControl());
+    this.myForm.addControl('license', new FormControl('', Validators.required));
     this.myForm.addControl('licenseNum', new FormControl());
     this.myForm.addControl('licenseExp', new FormControl());
     this.myForm.addControl('licenseFile', new FormControl());

@@ -1,5 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-pac',
@@ -11,9 +16,9 @@ export class PacComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.myForm.addControl('cphone', new FormControl());
+    this.myForm.addControl('cphone', new FormControl('', Validators.required));
     this.myForm.addControl('wphone', new FormControl());
-    this.myForm.addControl('address', new FormControl());
+    this.myForm.addControl('address', new FormControl(Validators.required));
     this.myForm.addControl('address2', new FormControl());
     this.myForm.addControl('city', new FormControl());
     this.myForm.addControl('state', new FormControl());
