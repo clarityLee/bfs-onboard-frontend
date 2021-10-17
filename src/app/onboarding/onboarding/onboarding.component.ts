@@ -75,7 +75,7 @@ export class OnboardingComponent implements OnInit {
       .post<any>(
         'http://localhost:8080/on-boarding',
         {
-          userName: this.string,
+          username: this.string,
           email: this.string,
           firstName: this.myForm.get('fname')?.value,
           lastName: this.myForm.get('lname')?.value,
@@ -90,29 +90,32 @@ export class OnboardingComponent implements OnInit {
             stateName: this.myForm.get('state')?.value,
             stateAbbr: this.myForm.get('state')?.value,
           },
-          ceilPhone: this.myForm.get('cphone')?.value,
+          cellPhone: this.myForm.get('cphone')?.value,
           workPhone: this.myForm.get('wphone')?.value,
           car:
             this.myForm.get('carMake')?.value +
             this.myForm.get('carColor')?.value +
             this.myForm.get('carModel')?.value,
-          SSN: this.myForm.get('ssn')?.value,
+          ssn: this.myForm.get('ssn')?.value,
           dateOfBirth: this.myForm.get('dob')?.value,
           resident: this.res,
           citizen: this.citizen,
           greenCard: this.greencard,
+          visaStartDate: this.myForm.get('startDate')?.value,
+          visaEndDate: this.myForm.get('authExp')?.value,
           workAuthorization: this.myForm.get('workAuth')?.value,
           workAuthUploadPath: this.myForm.get('authFile')?.value,
-          hasDriverLicense: this.license,
+          hasDriveLicense: this.license,
           driveLicenseNumber: this.myForm.get('licenseNum')?.value,
           driveLicenseExpireDate: this.myForm.get('licenseExp')?.value,
           driveLicensePath: this.myForm.get('licenseFile')?.value,
-          Gender: this.myForm.get('gender')?.value,
+          gender: this.myForm.get('gender')?.value,
+          optReceipt: this.myForm.get('OPT')?.value,
           reference: {
             firstName: this.myForm.get('refFname')?.value,
             lastName: this.myForm.get('refLname')?.value,
             middleName: this.myForm.get('refMname')?.value,
-            Phone: this.myForm.get('refPhone')?.value,
+            phone: this.myForm.get('refPhone')?.value,
             address: {
               addressLine1: this.myForm.get('refAddress')?.value,
               addressLine2: this.myForm.get('refAddress2')?.value,
@@ -125,7 +128,7 @@ export class OnboardingComponent implements OnInit {
             relationship: this.myForm.get('refRelationship')?.value,
           },
 
-          emergencyList: [this.myForm.get('contacts')?.value],
+          emergencyList: this.myForm.get('contacts')?.value,
         },
         httpOptions
       )
