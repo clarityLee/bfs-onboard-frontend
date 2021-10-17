@@ -12,7 +12,7 @@ export class EmergencyContactComponent implements OnInit {
   @Input() form = this.formBuilder.group({
     contacts: this.formBuilder.array([this.createContact()]),
   });
-
+  len = '';
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
@@ -62,6 +62,10 @@ export class EmergencyContactComponent implements OnInit {
     this.myForm
       .get('contacts')
       ?.setValue(JSON.stringify(this.form.get('contacts')?.value));
+    this.myForm.addControl('arrayLen', new FormControl());
+    const x = this.form.controls.contacts as FormArray;
+    this.len = x.length.toString();
+    this.myForm.get('arrayLen')?.setValue(this.len);
     //testing purposes
     console.log(this.myForm.get('contacts')?.value);
   }

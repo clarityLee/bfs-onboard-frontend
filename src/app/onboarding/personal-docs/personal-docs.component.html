@@ -1,4 +1,11 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <label for="OPT">Upload your OPT receipt: </label>
-  <input id="OPT" type="file" formControlName="OPT" />
+  <input
+    type="file"
+    (change)="onWorkAuthSelected($event)"
+    accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+  />
+  <button (click)="previewInNewWindow()" [disabled]="!myForm.value.OPT">
+    preview
+  </button>
 </form>

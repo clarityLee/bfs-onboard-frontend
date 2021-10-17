@@ -19,6 +19,7 @@ export class OnboardingComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
   userType: any = null;
   ngOnInit(): void {}
+
   onSubmit(): void {
     //var formData = new FormData();
     if (this.myForm.get('citizenship')?.value === 'yes') {
@@ -124,7 +125,7 @@ export class OnboardingComponent implements OnInit {
             relationship: this.myForm.get('refRelationship')?.value,
           },
 
-          emergencyList: this.myForm.get('contacts')?.value,
+          emergencyList: [this.myForm.get('contacts')?.value],
         },
         httpOptions
       )
@@ -132,5 +133,9 @@ export class OnboardingComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+  }
+
+  test() {
+    console.log(this.myForm.get('contacts')?.value);
   }
 }
