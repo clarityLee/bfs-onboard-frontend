@@ -139,6 +139,7 @@ export class OnboardingComponent implements OnInit {
   }
 
   test() {
+    //testing
     console.log(this.myForm.get('contacts')?.value);
   }
 }
