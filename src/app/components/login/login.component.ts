@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     formData.append('username',this.form.get('username')?.value);
     formData.append('password', this.form.get('password')?.value);
 
-    this.http.post<any>("http://localhost:9999/login",formData )
+    this.http.post<any>("http://localhost:9999/login",formData,{withCredentials:true} )
       .subscribe(
         data =>{
           //localStorage.setItem('username',this.username);

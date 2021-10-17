@@ -9,16 +9,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HireComponent implements OnInit {
   email:string='';
-  onboardingAppData = [
-    {'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'OPEN'},
-    {'firstname':'John','lastname':'lastJohn','visaType':'OPT','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'OPEN'},
-    {'firstname':'John','lastname':'lastJohn','visaType':'STEM','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'Pending'},
-    {'firstname':'John','lastname':'lastJohn','visaType':'OPT','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'Pending'},
-    {'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'Rejected'},
-    {'firstname':'John','lastname':'lastJohn','visaType':'OPT','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'Rejected'},
-    {'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'Completed'}
-  ];
 
+  //{employeeId,personId,firstname,lastname,visaType,visaStartDate,visaEndDate,applicationWorkFlowId,status}
+  onboardingAppData:any;
   documents = [
                 {'title':'doc1','link':'link1'},
                 {'title':'doc2','link':'link2'},
@@ -31,6 +24,11 @@ export class HireComponent implements OnInit {
   constructor(public dialog:MatDialog, private http:HttpClient) { }
 
   ngOnInit(): void {
+    //GET onboardingApp list
+    this.http.get('http://localhost:8080/hr/onboardingAppList',{withCredentials:true}).subscribe(
+      success => this.onboardingAppData = success,
+      error => console.log('failed to get onboarding list', error)
+    );
   }
 
   onGenerate(){
@@ -38,7 +36,7 @@ export class HireComponent implements OnInit {
     if(confirm('Are you sure you want to generate a token')){
       const formData = new FormData();
       formData.append('email', this.email);
-      this.http.post('http://localhost:8080/hr/sendRegisterToken', formData).subscribe(
+      this.http.post('http://localhost:8080/hr/sendRegisterToken', formData,{withCredentials:true} ).subscribe(
         (response) => this.dialog.open(ModalTokenSent,{
                         data:{info:"success"},
                         position: {top: '20px',left: '40%'}
@@ -48,9 +46,7 @@ export class HireComponent implements OnInit {
                         position: {top: '20px',left: '40%'}
                       })
       )
-
     }
-    
   }
 
   onDetails(){

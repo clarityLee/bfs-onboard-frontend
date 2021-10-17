@@ -32,9 +32,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalEmployeeDetails } from './components/hr/hire/hire.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ModalTokenSent } from './components/hr/hire/hire.component';
+import { MatIconModule } from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+
 
 import { TestComponent } from './components/test/test.component';
-import { DialogContentExampleDialog } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +65,7 @@ import { DialogContentExampleDialog } from './components/test/test.component';
     HrComponent,
     ModalEmployeeDetails,
     ModalTokenSent,
-    TestComponent,
-    DialogContentExampleDialog
+    TestComponent
   ],
   imports: [
     AppRoutingModule,
@@ -74,7 +76,10 @@ import { DialogContentExampleDialog } from './components/test/test.component';
     On_boardingModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

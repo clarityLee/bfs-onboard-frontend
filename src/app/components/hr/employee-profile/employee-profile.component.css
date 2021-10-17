@@ -1,0 +1,15 @@
+.mat-header-cell{
+    width:250px;
+}
+
+.mat-elevation-z8{
+    margin: 10px 50px;
+}
+
+.search{
+    margin:10px 50px;
+}
+
+#searchButton{
+    margin-left: 10px;
+}

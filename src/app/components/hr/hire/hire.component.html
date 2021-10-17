@@ -26,10 +26,10 @@
             <td>{{data.visaStartDate}}</td>
             <td>{{data.visaEndDate}}</td>
 
-            <td *ngIf="data.appStatus === 'OPEN'" [ngStyle]="{'color': 'blue'}">{{data.appStatus}}</td>
-            <td *ngIf="data.appStatus === 'Pending'" [ngStyle]="{'color': 'purple'}">{{data.appStatus}}</td>    
-            <td *ngIf="data.appStatus === 'Rejected'" [ngStyle]="{'color': 'red'}">{{data.appStatus}}</td>    
-            <td *ngIf="data.appStatus === 'Completed'" [ngStyle]="{'color': 'green'}">{{data.appStatus}}</td>
+            <td *ngIf="data.status === 'OPEN'" [ngStyle]="{'color': 'blue'}">{{data.status}}</td>
+            <td *ngIf="data.status === 'PENDING'" [ngStyle]="{'color': 'purple'}">{{data.status}}</td>    
+            <td *ngIf="data.status === 'REJECTED'" [ngStyle]="{'color': 'red'}">{{data.status}}</td>    
+            <td *ngIf="data.status === 'COMPLETED'" [ngStyle]="{'color': 'green'}">{{data.status}}</td>
 
             <td>
                 <button type="submit" class="btn btn-primary" (click)="onDetails()" >Details</button>

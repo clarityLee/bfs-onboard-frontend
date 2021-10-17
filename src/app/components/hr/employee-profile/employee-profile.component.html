@@ -1,5 +1,8 @@
-<input [(ngModel)]='searchFirstname' name='searchFirstname' type="searchFirstname" id="searchFirstname" placeholder="firstname">
-<button type="submit" class="btn btn-primary" (click)="onSearchFirstname()">Search</button>
+<div class="search">
+  <input [(ngModel)]='searchFirstname' name='searchFirstname' type="searchFirstname" id="searchFirstname" placeholder="firstname">
+  <button type="submit" class="btn btn-primary" (click)="onSearchFirstname()" id="searchButton">Search</button>
+</div>
+
 
 <!-- <input [(ngModel)]='searchLastname' name='searchLastname' type="searchLastname" id="searchLastname">
 <button type="submit" class="btn btn-primary" (click)="onSearchLastname()">Search</button>
@@ -7,7 +10,8 @@
 <input [(ngModel)]='searchId' name='searchId' type="searchId" id="searchId">
 <button type="submit" class="btn btn-primary" (click)="onSearch()">Search</button> -->
 
-<table class="table">
+
+<!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -24,4 +28,42 @@
             <td>{{profile.VisaStatus}}</td>
         </tr>
     </tbody>
-  </table>
+  </table> -->
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+    <!-- eid Column -->
+    <ng-container matColumnDef="eid">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.eid}} </td>
+  </ng-container>
+    <!-- firstname Column -->
+    <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef> Firstname </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+    </ng-container>
+    <!-- lastname Column -->
+    <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef> Lastname </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+    </ng-container>
+    <!-- ssn Column -->
+    <ng-container matColumnDef="ssn">
+        <th mat-header-cell *matHeaderCellDef> SSN </th>
+        <td mat-cell *matCellDef="let element"> {{element.ssn}} </td>
+    </ng-container>
+    <!-- startingDate Column -->
+    <ng-container matColumnDef="startingDate">
+        <th mat-header-cell *matHeaderCellDef> StartingDate </th>
+        <td mat-cell *matCellDef="let element"> {{element.startingDate}} </td>
+    </ng-container>
+    <!-- visaStatus Column -->
+    <ng-container matColumnDef="visaStatus">
+      <th mat-header-cell *matHeaderCellDef> VisaStatus </th>
+      <td mat-cell *matCellDef="let element"> {{element.visaStatus}} </td>
+    </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
