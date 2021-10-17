@@ -103,7 +103,7 @@ export class OnboardingComponent implements OnInit {
           greenCard: this.greencard,
           visaStartDate: this.myForm.get('startDate')?.value,
           visaEndDate: this.myForm.get('authExp')?.value,
-          workAuthorization: this.myForm.get('workAuth')?.value,
+          workAuthorization: this.myForm.get('authType')?.value,
           workAuthUploadPath: this.myForm.get('authFile')?.value,
           hasDriveLicense: this.license,
           driveLicenseNumber: this.myForm.get('licenseNum')?.value,
