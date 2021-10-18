@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
+import { OnboardService } from 'src/app/_services/onboard.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -13,10 +14,18 @@ export class OnboardingComponent implements OnInit {
   citizen = 'false';
   greencard = 'false';
   license = 'false';
-  string: string = 'aaa';
+  username = '';
+  email = '';
 
   @Input() myForm: FormGroup = new FormGroup({});
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private myService: OnboardService
+  ) {
+    this.username = this.myService.get1();
+    this.username = this.myService.get2();
+  }
   userType: any = 'personal';
   ngOnInit(): void {}
 
@@ -68,15 +77,19 @@ export class OnboardingComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
+
+    this.username = this.myService.get1();
+    this.email = this.myService.get2();
     //testing purposes
-    console.log(this.myForm.value);
+    // console.log(this.myForm.value);
+    console.log(this.email + ' ' + this.username);
 
     this.http
       .post<any>(
         'http://localhost:8080/on-boarding',
         {
-          username: this.string,
-          email: this.string,
+          username: this.username,
+          email: this.email,
           firstName: this.myForm.get('fname')?.value,
           lastName: this.myForm.get('lname')?.value,
           middleName: this.myForm.get('mname')?.value,
@@ -127,23 +140,21 @@ export class OnboardingComponent implements OnInit {
             email: this.myForm.get('refEmail')?.value,
             relationship: this.myForm.get('refRelationship')?.value,
           },
-
           emergencyList: [
             {
-              firstName: 'bob',
-              lastName: 'asdf',
-              middleName: 'asdf',
-              phone: '6549873214',
+              firstName: 'Candace',
+              lastName: 'Park',
+              phone: '789789789',
               address: {
-                addressLine1: 'asdf',
+                addressLine1: '389 S. Sycamore St.',
                 addressLine2: '',
-                city: 'asdf',
-                zipcode: '65478',
-                stateName: 'asdf',
-                stateAbbr: 'asdf',
+                city: 'Bismarck',
+                zipcode: '58501',
+                stateName: 'North Dakota',
+                stateAbbr: 'ND',
               },
-              email: 'asdf@asdf',
-              relationship: 'asdf',
+              email: 'abc@cdd.ddd',
+              relationship: 'Father',
             },
           ],
         },
