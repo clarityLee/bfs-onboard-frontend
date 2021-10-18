@@ -12,7 +12,7 @@ export class EmergencyContactComponent implements OnInit {
   @Input() form = this.formBuilder.group({
     contacts: this.formBuilder.array([this.createContact()]),
   });
-  len = '';
+  str = '';
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
@@ -21,7 +21,7 @@ export class EmergencyContactComponent implements OnInit {
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       middleName: new FormControl(''),
-      Phone: new FormControl(''),
+      phone: new FormControl(''),
       address: this.formBuilder.group({
         addressLine1: new FormControl(''),
         addressLine2: new FormControl(''),
@@ -42,7 +42,7 @@ export class EmergencyContactComponent implements OnInit {
         firstName: new FormControl(''),
         lastName: new FormControl(''),
         middleName: new FormControl(''),
-        Phone: new FormControl(''),
+        phone: new FormControl(''),
         address: this.formBuilder.group({
           addressLine1: new FormControl(''),
           addressLine2: new FormControl(''),
@@ -58,14 +58,49 @@ export class EmergencyContactComponent implements OnInit {
   }
 
   save() {
+    const contacts = this.form.controls.contacts as FormArray;
+    for (let i = 0; i < contacts.length; i++) {
+      this.str +=
+        '{firstName: ' +
+        contacts.at(i).get('firstName')?.value +
+        ',' +
+        'lastName: ' +
+        contacts.at(i).get('lastName')?.value +
+        ',' +
+        'middleName: ' +
+        contacts.at(i).get('middleName')?.value +
+        ',' +
+        'phone: ' +
+        contacts.at(i).get('phone')?.value +
+        ',' +
+        'address: { addressLine1:' +
+        contacts.at(i).get('addressLine1')?.value +
+        ',' +
+        'addressLine2:' +
+        contacts.at(i).get('addressLine2')?.value +
+        ',' +
+        'city:' +
+        contacts.at(i).get('city')?.value +
+        ',' +
+        'zipcode:' +
+        contacts.at(i).get('zipcode')?.value +
+        ',' +
+        'stateName:' +
+        contacts.at(i).get('stateName')?.value +
+        ',' +
+        'stateAbbr:' +
+        contacts.at(i).get('stateName')?.value +
+        ',' +
+        '}, email: ' +
+        contacts.at(i).get('email') +
+        ',' +
+        'relationship:' +
+        contacts.at(i).get('relationship')?.value +
+        ',},';
+    }
     this.myForm.addControl('contacts', new FormControl());
-    this.myForm
-      .get('contacts')
-      ?.setValue(JSON.stringify(this.form.get('contacts')?.value));
-    this.myForm.addControl('arrayLen', new FormControl());
-    const x = this.form.controls.contacts as FormArray;
-    this.len = x.length.toString();
-    this.myForm.get('arrayLen')?.setValue(this.len);
+    this.myForm.get('contacts')?.setValue(this.str);
+
     //testing purposes
     console.log(this.myForm.get('contacts')?.value);
   }

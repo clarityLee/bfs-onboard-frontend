@@ -17,7 +17,7 @@ export class OnboardingComponent implements OnInit {
 
   @Input() myForm: FormGroup = new FormGroup({});
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
-  userType: any = null;
+  userType: any = 'personal';
   ngOnInit(): void {}
 
   onSubmit(): void {
@@ -128,7 +128,24 @@ export class OnboardingComponent implements OnInit {
             relationship: this.myForm.get('refRelationship')?.value,
           },
 
-          emergencyList: this.myForm.get('contacts')?.value,
+          emergencyList: [
+            {
+              firstName: 'bob',
+              lastName: 'asdf',
+              middleName: 'asdf',
+              phone: '6549873214',
+              address: {
+                addressLine1: 'asdf',
+                addressLine2: '',
+                city: 'asdf',
+                zipcode: '65478',
+                stateName: 'asdf',
+                stateAbbr: 'asdf',
+              },
+              email: 'asdf@asdf',
+              relationship: 'asdf',
+            },
+          ],
         },
         httpOptions
       )
