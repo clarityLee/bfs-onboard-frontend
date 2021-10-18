@@ -18,7 +18,7 @@ export class PacComponent implements OnInit {
   ngOnInit(): void {
     this.myForm.addControl('cphone', new FormControl('', Validators.required));
     this.myForm.addControl('wphone', new FormControl());
-    this.myForm.addControl('address', new FormControl(Validators.required));
+    this.myForm.addControl('address', new FormControl('', Validators.required));
     this.myForm.addControl('address2', new FormControl());
     this.myForm.addControl('city', new FormControl());
     this.myForm.addControl('state', new FormControl());

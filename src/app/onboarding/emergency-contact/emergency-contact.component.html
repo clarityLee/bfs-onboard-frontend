@@ -1,9 +1,13 @@
 <form [formGroup]="form">
   <div
     formArrayName="contacts"
-    *ngFor="let contacts of form.controls.contacts?.value; let i = index"
+    *ngFor="
+      let contacts of form.controls.contacts?.value;
+      let i = index;
+      trackBy: trackByFn
+    "
   >
-    <ng-container [formGroupName]="i">
+    <div [formGroupName]="i">
       <label for="cFname">First Name: </label>
       <input id="cFname" type="text" formControlName="firstName" />
 
@@ -14,7 +18,7 @@
       <input id="cMname" type="text" formControlName="middleName" />
 
       <label for="cPhone">Phone Number: </label>
-      <input id="cPhone" type="text" formControlName="Phone" />
+      <input id="cPhone" type="text" formControlName="phone" />
       <div formGroupName="address">
         <label for="cAddress">Address: </label>
         <input id="cAddress" type="text" formControlName="addressLine1" />
@@ -36,7 +40,7 @@
 
       <label for="cRelationship">Relationship: </label>
       <input id="cRelationship" type="text" formControlName="relationship" />
-    </ng-container>
+    </div>
   </div>
   <button (click)="addContact()">Add</button>
   <p>Click save after filling entries</p>

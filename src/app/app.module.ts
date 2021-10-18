@@ -8,7 +8,7 @@ import { ContactSectionComponent } from './components/employee/personal-info/con
 import { DocumentSectionComponent } from './components/employee/personal-info/document-section/document-section.component';
 import { EmergencyContactSectionComponent } from './components/employee/personal-info/emergency-contact-section/emergency-contact-section.component';
 import { EmployeeComponent } from './components/employee/employee.component';
-import { EmployeeProfileComponent} from './components/hr/employee-profile/employee-profile.component';
+import { EmployeeProfileComponent } from './components/hr/employee-profile/employee-profile.component';
 import { EmploymentSectionComponent } from './components/employee/personal-info/employment-section/employment-section.component';
 import { FormsModule } from '@angular/forms';
 import { HireComponent } from './components/hr/hire/hire.component';
@@ -28,17 +28,17 @@ import { RegisterComponent } from './components/register/register.component';
 import { VisaStatusComponent } from './components/employee/visa-status/visa-status.component';
 import { VisaStatusManagementComponent } from './components/hr/visa-status-management/visa-status-management.component';
 import { HrComponent } from './components/hr/hr.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ModalEmployeeDetails } from './components/hr/hire/hire.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModalTokenSent } from './components/hr/hire/hire.component';
 import { MatIconModule } from '@angular/material/icon';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 
-
 import { TestComponent } from './components/test/test.component';
+import { OnboardService } from './_services/onboard.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,7 @@ import { TestComponent } from './components/test/test.component';
     HrComponent,
     ModalEmployeeDetails,
     ModalTokenSent,
-    TestComponent
+    TestComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -83,7 +83,7 @@ import { TestComponent } from './components/test/test.component';
     MatTableModule,
     MatInputModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [OnboardService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

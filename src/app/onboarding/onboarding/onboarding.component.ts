@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
+import { OnboardService } from 'src/app/_services/onboard.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -13,11 +14,19 @@ export class OnboardingComponent implements OnInit {
   citizen = 'false';
   greencard = 'false';
   license = 'false';
-  string: string = 'aaa';
+  username = '';
+  email = '';
 
   @Input() myForm: FormGroup = new FormGroup({});
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
-  userType: any = null;
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private myService: OnboardService
+  ) {
+    this.username = this.myService.get1();
+    this.username = this.myService.get2();
+  }
+  userType: any = 'personal';
   ngOnInit(): void {}
 
   onSubmit(): void {
@@ -68,15 +77,19 @@ export class OnboardingComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
+
+    this.username = this.myService.get1();
+    this.email = this.myService.get2();
     //testing purposes
-    console.log(this.myForm.value);
+    // console.log(this.myForm.value);
+    console.log(this.email + ' ' + this.username);
 
     this.http
       .post<any>(
         'http://localhost:8080/on-boarding',
         {
-          username: this.string,
-          email: this.string,
+          username: this.username,
+          email: this.email,
           firstName: this.myForm.get('fname')?.value,
           lastName: this.myForm.get('lname')?.value,
           middleName: this.myForm.get('mname')?.value,
@@ -103,7 +116,7 @@ export class OnboardingComponent implements OnInit {
           greenCard: this.greencard,
           visaStartDate: this.myForm.get('startDate')?.value,
           visaEndDate: this.myForm.get('authExp')?.value,
-          workAuthorization: this.myForm.get('workAuth')?.value,
+          workAuthorization: this.myForm.get('authType')?.value,
           workAuthUploadPath: this.myForm.get('authFile')?.value,
           hasDriveLicense: this.license,
           driveLicenseNumber: this.myForm.get('licenseNum')?.value,
@@ -127,8 +140,24 @@ export class OnboardingComponent implements OnInit {
             email: this.myForm.get('refEmail')?.value,
             relationship: this.myForm.get('refRelationship')?.value,
           },
-
-          emergencyList: this.myForm.get('contacts')?.value,
+          emergencyList: [
+            {
+              firstName: 'Candace',
+              lastName: 'Park',
+              phone: '789789789',
+              address: {
+                addressLine1: '389 S. Sycamore St.',
+                addressLine2: '',
+                city: 'Bismarck',
+                zipcode: '58501',
+                stateName: 'North Dakota',
+                stateAbbr: 'ND',
+              },
+              email: 'abc@cdd.ddd',
+              relationship: 'Father',
+            },
+            // this.myForm.get('contacts')?.value,
+          ],
         },
         httpOptions
       )
@@ -139,6 +168,7 @@ export class OnboardingComponent implements OnInit {
   }
 
   test() {
+    //testing
     console.log(this.myForm.get('contacts')?.value);
   }
 }
