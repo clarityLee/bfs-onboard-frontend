@@ -34,6 +34,9 @@ export class EmergencyContactComponent implements OnInit {
       relationship: new FormControl(''),
     });
   }
+  trackByFn(index: any, item: any) {
+    return index;
+  }
 
   addContact() {
     const contacts = this.form.controls.contacts as FormArray;
@@ -96,7 +99,7 @@ export class EmergencyContactComponent implements OnInit {
         ',' +
         'relationship:' +
         contacts.at(i).get('relationship')?.value +
-        ',},';
+        ',}';
     }
     this.myForm.addControl('contacts', new FormControl());
     this.myForm.get('contacts')?.setValue(this.str);

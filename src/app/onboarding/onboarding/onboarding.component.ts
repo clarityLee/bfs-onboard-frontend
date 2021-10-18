@@ -156,6 +156,7 @@ export class OnboardingComponent implements OnInit {
               email: 'abc@cdd.ddd',
               relationship: 'Father',
             },
+            // this.myForm.get('contacts')?.value,
           ],
         },
         httpOptions

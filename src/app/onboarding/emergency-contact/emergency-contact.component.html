@@ -1,7 +1,11 @@
 <form [formGroup]="form">
   <div
     formArrayName="contacts"
-    *ngFor="let contacts of form.controls.contacts?.value; let i = index"
+    *ngFor="
+      let contacts of form.controls.contacts?.value;
+      let i = index;
+      trackBy: trackByFn
+    "
   >
     <div [formGroupName]="i">
       <label for="cFname">First Name: </label>
