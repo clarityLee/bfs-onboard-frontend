@@ -35,6 +35,7 @@ import { ModalTokenSent } from './components/hr/hire/hire.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { TestComponent } from './components/test/test.component';
@@ -79,7 +80,8 @@ import { TestComponent } from './components/test/test.component';
     MatFormFieldModule,
     MatIconModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

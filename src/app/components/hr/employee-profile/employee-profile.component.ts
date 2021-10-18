@@ -10,14 +10,14 @@ import {MatTableDataSource} from '@angular/material/table';
 export class EmployeeProfileComponent implements OnInit {
   objectKeys = Object.keys;
   searchFirstname:string='';
-  employeeProfiles:User[] = [{'eid':1,'firstname':'John','lastname':'lastJohn','SSN':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
-                  {'eid':2,'firstname':'John','lastname':'lastJohn','SSN':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
-                  {'eid':3,'firstname':'John','lastname':'lastJohn','SSN':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
-                  {'eid':4,'firstname':'John','lastname':'lastJohn','SSN':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
-                  {'eid':5,'firstname':'John','lastname':'lastJohn','SSN':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
-                  {'eid':6,'firstname':'mary','lastname':'lastMary','SSN':'345','startingDate':'9/5/2022','visaStatus':'OPT STEM'},
-                  {'eid':7,'firstname':'mary','lastname':'lastMary','SSN':'345','startingDate':'9/5/2022','visaStatus':'OPT STEM'},
-                  {'eid':8,'firstname':'mary','lastname':'lastMary','SSN':'345','startingDate':'9/5/2022','visaStatus':'OPT STEM'}];
+  employeeProfiles:User[] = [{'eid':1,'firstname':'John','lastname':'lastJohn','ssn':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
+                  {'eid':2,'firstname':'John','lastname':'lastJohn','ssn':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
+                  {'eid':3,'firstname':'John','lastname':'lastJohn','ssn':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
+                  {'eid':4,'firstname':'John','lastname':'lastJohn','ssn':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
+                  {'eid':5,'firstname':'John','lastname':'lastJohn','ssn':'123','startingDate':'9/1/2022','visaStatus':'OPT'},
+                  {'eid':6,'firstname':'mary','lastname':'lastMary','ssn':'345','startingDate':'9/5/2022','visaStatus':'OPT STEM'},
+                  {'eid':7,'firstname':'mary','lastname':'lastMary','ssn':'345','startingDate':'9/5/2022','visaStatus':'OPT STEM'},
+                  {'eid':8,'firstname':'mary','lastname':'lastMary','ssn':'345','startingDate':'9/5/2022','visaStatus':'OPT STEM'}];
 
                   
   matchedProfiles:any;
@@ -51,7 +51,7 @@ export interface User {
   eid: number;
   firstname: string;
   lastname: string;
-  SSN: string;
+  ssn: string;
   startingDate: string;
   visaStatus: string;
 }

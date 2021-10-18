@@ -12,23 +12,26 @@ export class HireComponent implements OnInit {
 
   //{employeeId,personId,firstname,lastname,visaType,visaStartDate,visaEndDate,applicationWorkFlowId,status}
   onboardingAppData:any;
-  documents = [
-                {'title':'doc1','link':'link1'},
-                {'title':'doc2','link':'link2'},
-                {'title':'doc3','link':'link3'}
-              ];
 
-  personalInfo={'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'OPEN'};
+  //personalInfo={firstname,lastname,visaType,visaStartDate,visaEndDate,appStatus};
+  personalInfo:any;
   comments:any;
 
   constructor(public dialog:MatDialog, private http:HttpClient) { }
 
   ngOnInit(): void {
-    //GET onboardingApp list
-    this.http.get('http://localhost:8080/hr/onboardingAppList',{withCredentials:true}).subscribe(
-      success => this.onboardingAppData = success,
-      error => console.log('failed to get onboarding list', error)
-    );
+    this.getOnboradingAppList();
+  }
+
+  getOnboradingAppList(){
+  //GET onboardingApp list
+  this.http.get('http://localhost:8080/hr/onboardingAppList',{withCredentials:true}).subscribe(
+    success => {
+      this.onboardingAppData = success;
+      console.log('get onboard list success')
+    },
+    error => console.log('failed to get onboarding list', error)
+);
   }
 
   onGenerate(){
@@ -49,36 +52,58 @@ export class HireComponent implements OnInit {
     }
   }
 
-  onDetails(){
-    console.log("on details ");
-    const dialogRef = this.dialog.open(ModalEmployeeDetails,{
-      width: '80%',
-      height: '80%',
-      data:{docs:this.documents,pInfo:this.personalInfo}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  onAddComments(){
-    console.log("add comments for docs ");
+  onDetails(eid:number){
+    console.log("on details ", eid);
+    let url = 'http://localhost:8080/details/employee/' + eid;
+    this.http.get(url,{withCredentials:true} ).subscribe(
+        (response) => {
+          this.personalInfo = response;
+          const dialogRef = this.dialog.open(ModalEmployeeDetails,{
+            width: '90%',
+            height: '90%',
+            data:{pInfo:this.personalInfo}
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+            this.getOnboradingAppList();
+          });
+        },
+        (response) => console.log("failed to get personal info in details page")
+      );
+    
   }
 }
 
 @Component({
   selector: 'modal-employee-details',
   templateUrl: 'modal-employee-details.html',
+  styleUrls: ['./modal-employee-details.component.css']
 })
 export class ModalEmployeeDetails {
-  comments:string = '';
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef:MatDialogRef<ModalEmployeeDetails>){
+  comments:string[] = [];
+  appComment:string ='';
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef:MatDialogRef<ModalEmployeeDetails>,private http:HttpClient){
 
   }
 
-  onView(){
+  onView(path:string){
     console.log("in modal view function");
+    let url = 'http://localhost:8080/download/bfs-work-authorization/' + path;
+    console.log('url: ' + url);
+    window.open(url,'Image','width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
+  }
+
+  onAddAppComment(wordflowId:number){
+    console.log('in modal add app comments');
+    const formData = new FormData();
+    formData.append('applicationWorkFlowId',wordflowId.toString());
+    formData.append('comment',this.appComment);
+
+    this.http.post('http://localhost:8080/hr/comment/application',formData,{withCredentials:true}).subscribe(
+      (success)=> console.log('add app comment success'),
+      (error) => console.log('fail to add comment')
+    );
   }
 
   onClose(){
@@ -86,18 +111,40 @@ export class ModalEmployeeDetails {
     this.dialogRef.close();
   }
 
-  onApprove(){
+  onApprove(wordflowId:number){
     console.log("approve");
-    this.onClose();
+    const formData = new FormData();
+    formData.append('applicationWorkFlowId',wordflowId.toString());
+
+    this.http.post('http://localhost:8080/hr/hiring/approve',formData,{withCredentials:true}).subscribe(
+      (success)=> console.log('approve success'),
+      (error) => console.log('fail to approve')
+    );
   }
 
-  onReject(){
+  onReject(wordflowId:number){
     console.log("reject");
-    this.onClose();
+    const formData = new FormData();
+    formData.append('applicationWorkFlowId',wordflowId.toString());
+    formData.append('rejectReason',this.comments.toString());
+    this.http.post('http://localhost:8080/hr/hiring/reject',formData,{withCredentials:true}).subscribe(
+      (success)=> console.log('reject success'),
+      (error) => console.log('fail to reject')
+    );
   }
 
-  onAddComments(){
+  onAddComments(index:number, docId:number){
     console.log("add comments in modal");
+    console.log('index ',index ,' comments: ', this.comments[index], ' doc id',docId);
+
+    const formData = new FormData();
+    formData.append('personalDocumentId',docId.toString());
+    formData.append('comment', this.comments[index]);
+
+    this.http.post('http://localhost:8080/hr/comment/docs',formData,{withCredentials:true}).subscribe(
+      (success)=> console.log('add comment success'),
+      (error) => console.log('fail to add comment')
+    );
   }
 }
 

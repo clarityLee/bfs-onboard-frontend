@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Application Review</h2>
+<h1 mat-dialog-title>Application Review</h1>
 <mat-dialog-content class="mat-typography">
-    <h3>Personal Info</h3>
+    <h2>Personal Info</h2>
     <table class="table">
         <thead>
           <tr>
@@ -15,37 +15,48 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{data.pInfo.firstname}}</td>
-                <td>{{data.pInfo.lastname}}</td>
-                <td>{{data.pInfo.visaType}}</td>
-                <td>{{data.pInfo.visaStartDate}}</td>
-                <td>{{data.pInfo.visaEndDate}}</td>
-                <td>{{data.pInfo.appStatus}}</td>
+                <td>{{data.pInfo.person.firstName}}</td>
+                <td>{{data.pInfo.person.lastName}}</td>
+                <td>{{data.pInfo.visaStatus.visaType}}</td>
+                <td>{{data.pInfo.employee.visaStartDate}}</td>
+                <td>{{data.pInfo.employee.visaEndDate}}</td>
+                <td>{{data.pInfo.applicationWorkFlow.statusStr}}</td>
             </tr>
         </tbody>
     </table>
-    <hr>
     <br>
     
 
 
-    <h3>Documentation Application</h3>
-    <div *ngFor = "let doc of data.docs, let i=index">
-        <div>{{doc.title}}                                 
-            <button type="submit" class="btn btn-primary" (click)="onView()" >View</button>
+    <h2>Documentation Application</h2>
+    <div *ngFor = "let doc of data.pInfo.personalDocuments, let i=index">
+        <div class="docInfo">{{doc.title}}                                 
+            <button style="margin-left: 10px;" type="submit" class="btn btn-primary" (click)="onView(doc.path)" >View</button>
         </div>
-        <input [(ngModel)]='comments' name='comments' type="comments" id="comments" placeholder="comments...">
+        <input [(ngModel)]='comments[i]' name='comments[i]' type="comments" id="comments" placeholder={{doc.comment}}>
+        <button type="submit" class="btn btn-primary" (click)="onAddComments(i,doc.id)" >Add Comments</button>
         <br>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary" (click)="onAddComments()" >Add Comments</button>
-    <br><br>
+
+
+    <div class="appComment">
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Leave a comment</mat-label>
+              <textarea matInput [(ngModel)]="appComment" name="appComment" placeholder={{data.pInfo.applicationWorkFlow.comments}}></textarea>
+            </mat-form-field>
+        </form>
+        <button type="submit" class="btn btn-primary" (click)="onAddAppComment(data.pInfo.applicationWorkFlow.id)" >Add App Comments</button>
+    </div>
+
+
     
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button type="submit" class="btn btn-primary" (click)="onClose()" >Close</button>
-    <button type="submit" class="btn btn-primary" (click)="onApprove()" >Approve</button>
-    <button type="submit" class="btn btn-primary" (click)="onReject()" >Reject</button>
+    <button type="submit" class="btn btn-primary" (click)="onApprove(data.pInfo.applicationWorkFlow.id)" >Approve</button>
+    <button type="submit" class="btn btn-primary" (click)="onReject(data.pInfo.applicationWorkFlow.id)" >Reject</button>
   <!-- <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Approve</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Reject</button> -->
