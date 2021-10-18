@@ -1,24 +1,24 @@
 <div class="container">
     <div class="row">
       <div class="col">
-        <app-name-section></app-name-section>
+        <app-name-section [personalInfo]="personalInfo"></app-name-section>
       </div>
       <div class="col">
-        <app-employment-section></app-employment-section>
+        <app-employment-section [personalInfo]="personalInfo"></app-employment-section>
       </div>
       <div class="col">
-        <app-contact-section></app-contact-section>
+        <app-contact-section [personalInfo]="personalInfo"></app-contact-section>
       </div>
     </div>
     <div class="row">
         <div class="col">
-            <app-address-section></app-address-section>
+            <app-address-section [personalInfo]="personalInfo"></app-address-section>
         </div>
         <div class="col">
-            <app-emergency-contact-section></app-emergency-contact-section>
+            <app-emergency-contact-section [personalInfo]="personalInfo"></app-emergency-contact-section>
         </div>
         <div class="col">
-            <app-document-section></app-document-section>
+            <app-document-section [personalInfo]="personalInfo"></app-document-section>
         </div>
       </div>
   </div>

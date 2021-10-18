@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,11 +8,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactSectionComponent implements OnInit {
   isReadOnly:string = 'readonly';
-
+  @Input() personalInfo:any;
+  
   personalEmail = new FormControl(null,[Validators.required]);
   workEmail = new FormControl(null, [Validators.required]);
   cellphone = new FormControl(null, [Validators.required]);
   workPhone = new FormControl(null, [Validators.required]);
+
   form: FormGroup = new FormGroup({
     personalEmail:this.personalEmail,
     workEmail:this.workEmail,
@@ -25,10 +27,17 @@ export class ContactSectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.personalEmail.setValue('a@a.com');
-    this.workEmail.setValue('b@b.com');
-    this.cellphone.setValue('3123433434');
-    this.workPhone.setValue('2343534564');
+  }
+
+  ngOnChanges(){
+    if(typeof(this.personalInfo)!=="undefined"){
+      console.log(this.personalInfo);
+      this.personalEmail.setValue(this.personalInfo.person.email);
+      this.workEmail.setValue(this.personalInfo.user.email);
+      this.cellphone.setValue(this.personalInfo.person.cellPhone);
+      this.workPhone.setValue(this.personalInfo.person.alternatePhone);
+    }
+    
   }
 
   onEdit(){

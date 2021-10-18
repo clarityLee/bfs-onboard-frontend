@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-emergency-contact-section',
@@ -9,6 +9,7 @@ export class EmergencyContactSectionComponent implements OnInit {
   emergencyContacts = [{'fullname':'emergency1', 'phone':'1234','address':'emergency add1'},
                       {'fullname':'emergency2', 'phone':'5678','address':'emergency add2'}];
   
+  @Input() personalInfo:any;
   isReadOnly:string = 'readonly';
 
   constructor() { }

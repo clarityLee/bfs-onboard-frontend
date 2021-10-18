@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -9,6 +9,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class DocumentSectionComponent implements OnInit {
   documents = [{'title':'demo3','path':'http://static.runoob.com/images/demo/demo3.jpg'},
                 {'title':'demo2','path':'http://static.runoob.com/images/demo/demo2.jpg'}]
+  @Input() personalInfo:any;
   trustedUrl:any='';
 
   constructor(private sanitizer:DomSanitizer) {

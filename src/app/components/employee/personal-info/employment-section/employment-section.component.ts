@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmploymentSection } from 'src/app/models/employment-section.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-employment-section',
@@ -8,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EmploymentSectionComponent implements OnInit {
   isReadOnly:string = 'readonly';
+  @Input() personalInfo:any;
 
   workAuthorization = new FormControl(null,[Validators.required]);
   workAuthStartDate = new FormControl(null, [Validators.required]);
@@ -25,17 +28,21 @@ export class EmploymentSectionComponent implements OnInit {
     title:this.title,
   });
 
-  constructor() {
+  constructor(private http:HttpClient) {
   }
 
   ngOnInit(): void {
-    this.workAuthorization.setValue("f1");
-      this.workAuthStartDate.setValue("1/1/2020");
-      this.workAuthEndDate.setValue("1/1/2020");
-      this.employmentStartDate.setValue("1/1/2020");
-      this.employmentEndDate.setValue("1/1/2020");
+  }
+
+  ngOnChanges(){
+    if(typeof(this.personalInfo)!=="undefined"){
+      this.workAuthorization.setValue(this.personalInfo.visaStatus.visaType);
+      this.workAuthStartDate.setValue(this.personalInfo.employee.visaStartDate);
+      this.workAuthEndDate.setValue(this.personalInfo.employee.visaEndDate);
+      this.employmentStartDate.setValue("2020-01-01");
+      this.employmentEndDate.setValue("2025-01-01");
       this.title.setValue("sde");
-      this.isReadOnly = 'readonly';
+    }
   }
 
   onEdit(){
@@ -45,20 +52,44 @@ export class EmploymentSectionComponent implements OnInit {
   //save to database
   onSave(){
     console.log('save');
-    console.log("title ", this.form.get('title')?.value)
     this.isReadOnly = 'readonly';
+
+    const objData = new EmploymentSection(
+      this.personalInfo.employee.id,
+      this.form.get('workAuthorization')?.value,
+      this.form.get('workAuthStartDate')?.value,
+      this.form.get('workAuthEndDate')?.value,
+      this.form.get('employmentStartDate')?.value,
+      this.form.get('employmentEndDate')?.value,
+      this.form.get('title')?.value
+    );
+
+    console.log("before post: ",objData);
+
+    this.http.post("http://localhost:8080/employee/edit-employee",objData,{withCredentials:true})
+      .subscribe(
+        response => {
+          console.log('save employment section success');
+          this.personalInfo.visaStatus.visaType = this.form.get('workAuthorization')?.value,
+          this.personalInfo.employee.visaStartDate = this.form.get('visaStartDate')?.value,
+          this.personalInfo.employee.visaEndDate = this.form.get('visaEndDate')?.value
+        },
+        error => console.log('failed to save name section')
+      );
   }
 
   //cancel change
   onCancel(){
     console.log('cancel');
     if(confirm('Are you sure to discard all your changes')){
-      this.workAuthorization.setValue("f1");
-      this.workAuthStartDate.setValue("1/1/2020");
-      this.workAuthEndDate.setValue("1/1/2020");
-      this.employmentStartDate.setValue("1/1/2020");
-      this.employmentEndDate.setValue("1/1/2020");
+      this.workAuthorization.setValue(this.personalInfo.visaStatus.visaType);
+      this.workAuthStartDate.setValue(this.personalInfo.employee.visaStartDate);
+      this.workAuthEndDate.setValue(this.personalInfo.employee.visaEndDate);
+
+      this.employmentStartDate.setValue("2020-01-01");
+      this.employmentEndDate.setValue("2025-01-01");
       this.title.setValue("sde");
+
       this.isReadOnly = 'readonly';
     }
 

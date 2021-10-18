@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { NameSection } from 'src/app/models/name-section.model';
 
 @Component({
   selector: 'app-name-section',
@@ -8,13 +10,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class NameSectionComponent implements OnInit {
   isReadOnly:string = 'readonly';
+  @Input() personalInfo:any;
 
   firstname = new FormControl(null,[Validators.required]);
   lastname = new FormControl(null, [Validators.required]);
   preferredname = new FormControl(null, [Validators.required]);
-  avatar = new FormControl(null,[Validators.required]);
   birth = new FormControl(null, [Validators.required]);
-  age = new FormControl(null, [Validators.required]);
   gender = new FormControl({value:'',disabled:'true'},[Validators.required]);
   ssn = new FormControl(null, [Validators.required]);
 
@@ -22,25 +23,28 @@ export class NameSectionComponent implements OnInit {
     firstname:this.firstname,
     lastname:this.lastname,
     preferredname:this.preferredname,
-    avatar:this.avatar,
     birth:this.birth,
-    age:this.age,
     gender:this.gender,
     ssn:this.ssn
   });
 
-  constructor() { 
+  constructor(private http:HttpClient) { 
   }
 
   ngOnInit(): void {
-    this.firstname.setValue("myfirstname");
-    this.lastname.setValue('mylastname');
-    this.preferredname.setValue('myprefername');
-    this.avatar.setValue('myavatar');
-    this.birth.setValue('09/10/1212');
-    this.age.setValue(10);
-    this.gender.setValue('female');
-    this.ssn.setValue('123456');
+  }
+
+  ngOnChanges(){
+    if(typeof(this.personalInfo)!=="undefined"){
+      console.log(this.personalInfo);
+      this.firstname.setValue(this.personalInfo.person.firstName);
+      this.lastname.setValue(this.personalInfo.person.lastName);
+      this.preferredname.setValue(this.personalInfo.person.preferredName);
+      this.birth.setValue(this.personalInfo.person.dateOfBirth);
+      this.gender.setValue(this.personalInfo.person.gender);
+      this.ssn.setValue(this.personalInfo.person.ssn);
+    }
+    
   }
 
   onEdit(){
@@ -52,19 +56,31 @@ export class NameSectionComponent implements OnInit {
   onSave(){
     console.log('save');
 
-    const formData = new FormData();
-    formData.append('firstname',this.form.get('firstname')?.value);
-    formData.append('lastname', this.form.get('lastname')?.value);
-    formData.append('preferredname',this.form.get('preferredname')?.value);
-    formData.append('avatar', this.form.get('avatar')?.value);
-    formData.append('birth',this.form.get('birth')?.value);
-    formData.append('age', this.form.get('age')?.value);
-    formData.append('gender',this.form.get('gender')?.value);
-    formData.append('ssn', this.form.get('ssn')?.value);
+    const objData = new NameSection(
+      this.personalInfo.person.id,
+      this.form.get('firstname')?.value,
+      this.form.get('lastname')?.value,
+      this.form.get('preferredname')?.value,
+      this.form.get('birth')?.value,
+      this.form.get('gender')?.value,
+      this.form.get('ssn')?.value
+    )
 
-    console.log(this.form.get('firstname')?.value);
-    console.log(this.form.get('gender')?.value);
-    console.log(this.form.get('age')?.value);
+    console.log(objData);
+
+    this.http.post("http://localhost:8080/employee/edit-person",objData,{withCredentials:true})
+      .subscribe(
+        response => {
+          console.log('save name section success');
+          this.personalInfo.person.firstName = this.form.get('firstname')?.value,
+          this.personalInfo.person.lastName = this.form.get('lastname')?.value,
+          this.personalInfo.person.preferredName = this.form.get('preferredname')?.value,
+          this.personalInfo.person.dateOfBirth = this.form.get('birth')?.value,
+          this.personalInfo.person.gender = this.form.get('gender')?.value,
+          this.personalInfo.person.ssn = this.form.get('ssn')?.value
+        },
+        error => console.log('failed to save name section')
+      );
 
     this.isReadOnly = 'readonly';
     this.gender.disable();
@@ -74,14 +90,13 @@ export class NameSectionComponent implements OnInit {
   onCancel(){
     console.log('cancel');
     if(confirm('Are you sure to discard all your changes')){
-      this.firstname.setValue("myfirstname");
-      this.lastname.setValue('mylastname');
-      this.preferredname.setValue('myprefername');
-      this.avatar.setValue('myavatar');
-      this.birth.setValue('09/10/1212');
-      this.age.setValue(10);
-      this.gender.setValue('female');
-      this.ssn.setValue('123456');
+      this.firstname.setValue(this.personalInfo.person.firstName);
+      this.lastname.setValue(this.personalInfo.person.lastName);
+      this.preferredname.setValue(this.personalInfo.person.preferredName);
+      this.birth.setValue(this.personalInfo.person.dateOfBirth);
+      this.gender.setValue(this.personalInfo.person.gender);
+      this.ssn.setValue(this.personalInfo.person.ssn);
+
 
       this.isReadOnly = 'readonly';
       this.gender.disable();

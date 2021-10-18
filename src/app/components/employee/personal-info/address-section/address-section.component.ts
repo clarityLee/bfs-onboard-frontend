@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./address-section.component.css']
 })
 export class AddressSectionComponent implements OnInit {
+  @Input() personalInfo:any;
   isReadOnly:string = 'readonly';
 
   primaryAddressLine1 = new FormControl(null,[Validators.required]);
