@@ -33,10 +33,15 @@ export class LoginComponent implements OnInit {
         data =>{
           //localStorage.setItem('username',this.username);
           localStorage.setItem('username',this.form.get('username')?.value);
-          if (data.permissions.includes('hrpage'))
+          if (data.permissions.includes('hrpage')){
+            localStorage.setItem('role','hr');
             this.router.navigate(['/hr/home']);
-          else
+          }
+          else{
+            localStorage.setItem('role','employee');
             this.router.navigate(['/employee/home'])
+          }
+            
         },
         error =>{
           this.username.setValue(null);

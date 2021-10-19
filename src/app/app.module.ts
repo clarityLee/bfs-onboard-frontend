@@ -37,6 +37,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { AuthGuard } from './guards/auth.guard';
 
 import { TestComponent } from './components/test/test.component';
 import { OnboardService } from './_services/onboard.service';
@@ -85,7 +86,7 @@ import { OnboardService } from './_services/onboard.service';
     MatInputModule,
     MatCardModule
   ],
-  providers: [OnboardService],
+  providers: [OnboardService,AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

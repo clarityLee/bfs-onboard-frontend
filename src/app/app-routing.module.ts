@@ -18,6 +18,7 @@ import { HouseManagementComponent } from './components/hr/house-management/house
 import { HrComponent } from './components/hr/hr.component';
 import { HireComponent } from './components/hr/hire/hire.component';
 import { TestComponent } from './components/test/test.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -40,22 +41,27 @@ const routes: Routes = [
   {
     path:'employee', 
     component: EmployeeComponent,
+    canActivate: [AuthGuard],
     children:[
       {
         path:'home',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'personalInfo', 
-        component: PersonalInfoComponent
+        component: PersonalInfoComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'visaStatus',
-        component: VisaStatusComponent
+        component: VisaStatusComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'housing', 
-        component: HousingComponent
+        component: HousingComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -65,23 +71,28 @@ const routes: Routes = [
     children:[
       {
         path:'home',
-        component: HrHomeComponent
+        component: HrHomeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'employeeProfile', 
-        component: EmployeeProfileComponent
+        component: EmployeeProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'visaStatusManagement',
-        component: VisaStatusManagementComponent
+        component: VisaStatusManagementComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'hire',
-        component: HireComponent
+        component: HireComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'houseManagement', 
-        component: HouseManagementComponent
+        component: HouseManagementComponent,
+        canActivate: [AuthGuard]
       },
     ]
   },
