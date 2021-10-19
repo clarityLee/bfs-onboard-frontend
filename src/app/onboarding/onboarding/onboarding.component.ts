@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
 import { OnboardService } from 'src/app/_services/onboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-onboarding',
@@ -21,7 +22,8 @@ export class OnboardingComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private myService: OnboardService
+    private myService: OnboardService,
+    private router: Router
   ) {
     this.username = this.myService.get1();
     this.username = this.myService.get2();
@@ -165,6 +167,8 @@ export class OnboardingComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+
+    this.router.navigate(['']);
   }
 
   test() {
