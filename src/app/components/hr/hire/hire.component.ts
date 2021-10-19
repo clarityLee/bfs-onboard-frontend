@@ -58,6 +58,7 @@ export class HireComponent implements OnInit {
     this.http.get(url,{withCredentials:true} ).subscribe(
         (response) => {
           this.personalInfo = response;
+          console.log(this.personalInfo);
           const dialogRef = this.dialog.open(ModalEmployeeDetails,{
             width: '90%',
             height: '90%',
@@ -83,6 +84,8 @@ export class HireComponent implements OnInit {
 export class ModalEmployeeDetails {
   comments:string[] = [];
   appComment:string ='';
+  infoType:string='personalInfo';
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef:MatDialogRef<ModalEmployeeDetails>,private http:HttpClient){
 
   }
@@ -104,6 +107,18 @@ export class ModalEmployeeDetails {
       (success)=> console.log('add app comment success'),
       (error) => console.log('fail to add comment')
     );
+  }
+
+  onPersonalInfo(){
+    this.infoType = 'personalInfo';
+  }
+
+  onContact(){
+    this.infoType = 'contactInfo';
+  }
+
+  onDocument(){
+    this.infoType = 'docInfo';
   }
 
   onClose(){

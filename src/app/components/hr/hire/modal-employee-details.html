@@ -1,10 +1,92 @@
 <h1 mat-dialog-title>Application Review</h1>
 <mat-dialog-content class="mat-typography">
-    <h2>Personal Info</h2>
-    <table class="table">
+    <!-- <h2>Personal Info</h2> -->
+    <span (click)="onPersonalInfo()">Personal Info</span>
+    <span (click)="onContact()">Reference Contact</span>
+    <span (click)="onDocument()">Documents</span>
+
+    <div *ngIf="infoType=== 'personalInfo'">
+        <div class="container">
+            <div class="row">
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>Firstname</mat-label>
+                        <br>
+                        {{data.pInfo.person.firstName}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>Lastname</mat-label>
+                        <br>
+                        {{data.pInfo.person.lastName}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>visaType</mat-label>
+                        <br>
+                        {{data.pInfo.visaStatus.visaType}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>visaStartDate</mat-label>
+                        <br>
+                        {{data.pInfo.employee.visaStartDate}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>visaEndDate</mat-label>
+                        <br>
+                        {{data.pInfo.employee.visaEndDate}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>appStatus</mat-label>
+                        <br>
+                        {{data.pInfo.applicationWorkFlow.statusStr}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+   
+
+    <!-- <table *ngIf="infoType=== 'personalInfo'" class="table">
         <thead>
           <tr>
-            <!-- 'firstname':'John','lastname':'lastJohn','visaType':'F1','visaStartDate':'9/1/2022','visaEndDate':'9/1/2022','appStatus':'OPEN'}; -->
             <th scope="col">firstname</th>
             <th scope="col">lastname</th>
             <th scope="col">visaType</th>
@@ -24,23 +106,99 @@
             </tr>
         </tbody>
     </table>
-    <br>
+    <br> -->
+
+    <div *ngIf="infoType==='contactInfo'">
+        <div class="container">
+            <div class="row">
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>Firstname</mat-label>
+                        <br>
+                        {{data.pInfo.reference.person.firstName}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>MiddleName</mat-label>
+                        <br>
+                        {{data.pInfo.reference.person.middleName}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>LastName</mat-label>
+                        <br>
+                        {{data.pInfo.reference.person.lastName}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>Email</mat-label>
+                        <br>
+                        {{data.pInfo.reference.person.email}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>CellPhone</mat-label>
+                        <br>
+                        {{data.pInfo.reference.person.cellPhone}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+                <div class="col">        
+                    <mat-card>
+                        <mat-label>Relationship</mat-label>
+                        <br>
+                        {{data.pInfo.reference.relationship}}
+                    </mat-card>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comments</mat-label>
+                        <input matInput placeholder="" value="">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
     
 
-
-    <h2>Documentation Application</h2>
-    <div *ngFor = "let doc of data.pInfo.personalDocuments, let i=index">
-        <div class="docInfo">{{doc.title}}                                 
-            <button style="margin-left: 10px;" type="submit" class="btn btn-primary" (click)="onView(doc.path)" >View</button>
+    <div *ngIf="infoType==='docInfo'">
+        <div *ngFor = "let doc of data.pInfo.personalDocuments, let i=index">
+            <div class="docInfo">{{doc.title}}                                 
+                <button style="margin-left: 10px;" type="submit" class="btn btn-primary" (click)="onView(doc.path)" >View</button>
+            </div>
+            <input [(ngModel)]='comments[i]' name='comments[i]' type="comments" id="comments" placeholder={{doc.comment}}>
+            <button type="submit" class="btn btn-primary" (click)="onAddComments(i,doc.id)" >Add Comments</button>
+            <br>
         </div>
-        <input [(ngModel)]='comments[i]' name='comments[i]' type="comments" id="comments" placeholder={{doc.comment}}>
-        <button type="submit" class="btn btn-primary" (click)="onAddComments(i,doc.id)" >Add Comments</button>
-        <br>
     </div>
     <br>
 
 
-    <div class="appComment">
+    <div class="appComment" *ngIf="infoType==='docInfo'">
         <form class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Leave a comment</mat-label>
@@ -53,10 +211,10 @@
 
     
 </mat-dialog-content>
-<mat-dialog-actions align="end">
+<mat-dialog-actions align="end" *ngIf="infoType==='docInfo'">
     <button type="submit" class="btn btn-primary" (click)="onClose()" >Close</button>
-    <button type="submit" class="btn btn-primary" (click)="onApprove(data.pInfo.applicationWorkFlow.id)" >Approve</button>
-    <button type="submit" class="btn btn-primary" (click)="onReject(data.pInfo.applicationWorkFlow.id)" >Reject</button>
+    <button [disabled]="data.pInfo.applicationWorkFlow.statusStr!=='PENDING'" type="submit" class="btn btn-primary" (click)="onApprove(data.pInfo.applicationWorkFlow.id)" >Approve</button>
+    <button [disabled]="data.pInfo.applicationWorkFlow.statusStr!=='PENDING'" type="submit" class="btn btn-primary" (click)="onReject(data.pInfo.applicationWorkFlow.id)" >Reject</button>
   <!-- <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Approve</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Reject</button> -->

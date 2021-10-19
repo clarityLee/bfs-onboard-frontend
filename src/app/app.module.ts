@@ -36,6 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { TestComponent } from './components/test/test.component';
 import { OnboardService } from './_services/onboard.service';
@@ -81,7 +82,8 @@ import { OnboardService } from './_services/onboard.service';
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   providers: [OnboardService],
   bootstrap: [AppComponent],

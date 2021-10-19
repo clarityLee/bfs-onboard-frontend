@@ -1,67 +1,69 @@
-<h3>'OPT Receipt', 'OPT EAD', 'Wait for HR Sign I-983', 'I-20', 'OPT STEM Receipt', 'OPT STEM EAD'</h3>
-<!-- ['OPT Receipt', 'OPT EAD', 'I-983', 'I-20', 'OPT STEM Receipt', 'OPT STEM EAD']; -->
-<div *ngFor="let status of optStatus; let i=index">
-    <div *ngIf="status === 'OPT Receipt'">
-        <div>{{i+1}}. opt Receipt status</div>
-        <div>Please upload a copy of your OPT EAD</div>
-        <input type="file" class="file-input"
-            (change)="onFileSelected($event)" #fileUpload>
-        <!-- <div class="file-upload">
-            {{fileName || "No file uploaded yet."}}
+<div class='visaStatus'>
+    <h3>'OPT Receipt', 'OPT EAD', 'Wait for HR Sign I-983', 'I-20', 'OPT STEM Receipt', 'OPT STEM EAD'</h3>
+    <!-- ['OPT Receipt', 'OPT EAD', 'I-983', 'I-20', 'OPT STEM Receipt', 'OPT STEM EAD']; -->
+    <div *ngFor="let status of optStatus; let i=index">
+        <div *ngIf="status === 'OPT Receipt'">
+            <h2>{{i+1}}. opt Receipt status</h2>
+            <div>Please upload a copy of your OPT EAD</div>
+            <input type="file" class="file-input"
+                (change)="onFileSelected($event)" #fileUpload>
+            <!-- <div class="file-upload">
+                {{fileName || "No file uploaded yet."}}
+            
+                <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUpload.click()">
+                    <mat-icon>attach_file</mat-icon>
+                </button>
+            </div>  -->
+            <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
+        </div>
         
-            <button mat-mini-fab color="primary" class="upload-btn"
-                (click)="fileUpload.click()">
-                <mat-icon>attach_file</mat-icon>
-            </button>
-        </div>  -->
-        <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
-    </div>
-    
-    <div *ngIf="status === 'OPT EAD' && AuthDateLeft<100 ">
-        <div>{{i+1}}. opt ead status</div>
-        <div>Please download and fill your I-983</div>
-        <button type="submit" class="btn btn-primary">Download empty template</button>
-        <button type="submit" class="btn btn-primary">Download template</button>
-        <br>
-        <input type="file" class="file-input"
-            (change)="onFileSelected($event)" #fileUpload>
-        <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
+        <div *ngIf="status === 'OPT EAD' && AuthDateLeft<100 ">
+            <h2>{{i+1}}. opt ead status</h2>
+            <div>Please download and fill your I-983</div>
+            <button type="submit" class="btn btn-primary">Download empty template</button>
+            <button type="submit" class="btn btn-primary">Download template</button>
+            <br>
+            <input type="file" class="file-input"
+                (change)="onFileSelected($event)" #fileUpload>
+            <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
+        </div>
+
+        <div *ngIf="status === 'Wait for HR Sign I-983'">
+            <h2>{{i+1}}. Wait for HR Sign I-983 status</h2>
+            <div>Waiting for HR to approve and sign I-983</div>
+        </div>
+        <!-- need to upload I-20 -->
+        <div *ngIf="status === 'I-20'">      
+            <h2>{{i+1}}. I-20 status</h2>
+            <div>Please send the I-983 with all necessary documents to your school and upload the new I-20</div>
+            <button type="submit" class="btn btn-primary">Download signed I-983</button>
+            <br>
+            <input type="file" class="file-input"
+                (change)="onFileSelected($event)" #fileUpload>
+            <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
+        </div>
+
+        <div *ngIf="status === 'OPT STEM Receipt'">
+            <h2>{{i+1}}. OPT STEM Receipt status</h2>
+            <div>Please upload a copy of your OPT STEM EAD</div>
+            <input type="file" class="file-input"
+                (change)="onFileSelected($event)" #fileUpload>
+            <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
+        </div>
+
+        <div *ngIf="status === 'OPT STEM EAD'">
+            <h2>{{i+1}}. OPT STEM EAD status</h2>
+            <div>Please upload your OPT STEM EAD</div>
+            <input type="file" class="file-input"
+                (change)="onFileSelected($event)" #fileUpload>
+            <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
+        </div>
+        <hr>
     </div>
 
-    <div *ngIf="status === 'Wait for HR Sign I-983'">
-        <div>{{i+1}}. Wait for HR Sign I-983 status</div>
-        <div>Waiting for HR to approve and sign I-983</div>
-    </div>
-    <!-- need to upload I-20 -->
-    <div *ngIf="status === 'I-20'">      
-        <div>{{i+1}}. I-20 status</div>
-        <div>Please send the I-983 with all necessary documents to your school and upload the new I-20</div>
-        <button type="submit" class="btn btn-primary">Download signed I-983</button>
-        <br>
-        <input type="file" class="file-input"
-            (change)="onFileSelected($event)" #fileUpload>
-        <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
-    </div>
-
-    <div *ngIf="status === 'OPT STEM Receipt'">
-        <div>{{i+1}}. 'OPT STEM Receipt status</div>
-        <div>Please upload a copy of your OPT STEM EAD</div>
-        <input type="file" class="file-input"
-            (change)="onFileSelected($event)" #fileUpload>
-        <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
-    </div>
-
-    <div *ngIf="status === 'OPT STEM EAD'">
-        <div>{{i+1}}. OPT STEM EAD status</div>
-        <div>Please upload your OPT STEM EAD</div>
-        <input type="file" class="file-input"
-            (change)="onFileSelected($event)" #fileUpload>
-        <button type="submit" (click)='onUpload()' class="btn btn-primary">Upload</button>
-    </div>
     <hr>
+    <br>
+    <h2>Documents Uploaded</h2>
+
 </div>
-
-<hr>
-<br>
-<h3>Documents Uploaded</h3>
-

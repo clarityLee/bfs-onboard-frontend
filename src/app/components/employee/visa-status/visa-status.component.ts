@@ -19,9 +19,18 @@ export class VisaStatusComponent implements OnInit {
 
   fileToUpload!:File;
 
+  personalInfo:any;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get("http://localhost:8080/details/myInfo",{withCredentials:true} ).subscribe(
+      (response)=> {
+        this.personalInfo = response;
+        console.log(this.personalInfo);
+      },
+      (error)=>console.log(error)
+    );
   }
 
   onFileSelected(event: any) {

@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./hr-home.component.css']
 })
 export class HrHomeComponent implements OnInit {
+  userDate:any;
 
   constructor(private router: Router) { }
 

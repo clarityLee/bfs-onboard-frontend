@@ -3,38 +3,12 @@
   <button type="submit" class="btn btn-primary" (click)="onSearchFirstname()" id="searchButton">Search</button>
 </div>
 
-
-<!-- <input [(ngModel)]='searchLastname' name='searchLastname' type="searchLastname" id="searchLastname">
-<button type="submit" class="btn btn-primary" (click)="onSearchLastname()">Search</button>
-
-<input [(ngModel)]='searchId' name='searchId' type="searchId" id="searchId">
-<button type="submit" class="btn btn-primary" (click)="onSearch()">Search</button> -->
-
-
-<!-- <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">SSN</th>
-        <th scope="col">Starting Date</th>
-        <th scope="col">Visa Status</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let profile of matchedProfiles; let i=index">
-            <td>{{profile.firstname}}</td>
-            <td>{{profile.SSN}}</td>
-            <td>{{profile.StartingDate}}</td>
-            <td>{{profile.VisaStatus}}</td>
-        </tr>
-    </tbody>
-  </table> -->
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
     <!-- eid Column -->
     <ng-container matColumnDef="eid">
       <th mat-header-cell *matHeaderCellDef> Id </th>
-      <td mat-cell *matCellDef="let element"> {{element.eid}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
   </ng-container>
     <!-- firstname Column -->
     <ng-container matColumnDef="firstname">
@@ -47,19 +21,24 @@
         <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
     </ng-container>
     <!-- ssn Column -->
-    <ng-container matColumnDef="ssn">
+    <!-- <ng-container matColumnDef="ssn">
         <th mat-header-cell *matHeaderCellDef> SSN </th>
-        <td mat-cell *matCellDef="let element"> {{element.ssn}} </td>
-    </ng-container>
+        <td mat-cell *matCellDef="let element"> 123 </td>
+    </ng-container> -->
     <!-- startingDate Column -->
     <ng-container matColumnDef="startingDate">
         <th mat-header-cell *matHeaderCellDef> StartingDate </th>
-        <td mat-cell *matCellDef="let element"> {{element.startingDate}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.visaStartDate}} </td>
     </ng-container>
     <!-- visaStatus Column -->
     <ng-container matColumnDef="visaStatus">
       <th mat-header-cell *matHeaderCellDef> VisaStatus </th>
-      <td mat-cell *matCellDef="let element"> {{element.visaStatus}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.visaType}} </td>
+    </ng-container>
+    <!-- visaStatus Column -->
+    <ng-container matColumnDef="appStatus">
+      <th mat-header-cell *matHeaderCellDef> appStatus </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
     </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
